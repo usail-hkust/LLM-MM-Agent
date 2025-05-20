@@ -29,7 +29,8 @@ The agent simulates a real-world mathematical modeling workflow through the foll
 4. **📝 Solution Reporting**
    Summarizes the full modeling process, interprets results, and generates a clear, structured report.
 
-To support each stage, we incorporate a **Retrieval-Augmented Generation (RAG)**-driven structured thought template library. This enhances the agent’s reasoning ability and ensures a consistent, explainable problem-solving pipeline.
+We propose MM-Agent, an end-to-end solution for open-ended real-world modeling problems. Inspired by expert workflows, MM-Agent systematically analyzes unstructured problem descriptions, formulates structured mathematical models, derives solutions, and generates analytical reports.
+Among these stages, the modeling step poses the greatest challenge, as it requires abstracting complex scenarios into mathematically coherent formulations grounded in both problem context and solution feasibility. To address this, we introduce the Hierarchical Mathematical Modeling Library (HMML): a tri-level knowledge hierarchy encompassing domains, subdomains, and method nodes. HMML encodes 98 high-level modeling schemas that enable both problem-aware and solution-aware retrieval of modeling strategies, supporting abstraction and method selection.  Specifically, MM-Agent first analyzes the problem and decomposes it into subtasks. It then retrieves suitable methods from HMML and refines its modeling plans via an actor-critic mechanism. To solve the models, the agent autonomously generates and iteratively improves code using the MLE-Solver for efficient, accurate execution. Finally, it compiles a structured report summarizing the modeling approach, experimental results, and key insights.
 
 ---
 ## 🌐 Demo
