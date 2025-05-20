@@ -9,7 +9,7 @@ We propose a **Mathematical Modeling Agent** that simulates the real-world human
 3. **Computational Solving**
 4. **Solution Reporting**
 
-To enhance reasoning capabilities, we incorporate a **RAG-driven structured thought template library**, enabling more systematic, interpretable, and effective modeling steps.
+
 
 ---
 
