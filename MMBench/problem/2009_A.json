@@ -1,0 +1,8 @@
+{
+  "background": "Many cities and communities have traffic circles-from large ones with many lanes in the circle (such as at the Arc de Triomphe in Paris and the Victory Monument in Bangkok) to small ones with one or two lanes in the circle. Some of these traffic circles position a stop sign or a yield sign on every incoming road that gives priority to traffic already in the circle; some position a yield sign in the circle at each incoming road to give priority to incoming traffic; and some position a traffic light on each incoming road (with no right turn allowed on a red light). Other designs may also be possible.",
+  "problem_requirement": "The goal of this problem is to use a model to determine how best to control traffic flow in, around, and out of a circle. State clearly the objective(s) you use in your model for making the optimal choice as well as the factors that affect this choice. Include a Technical Summary of not more than two double-spaced pages that explains to a Traffic Engineer how to use your model to help choose the appropriate flow-control method for any specific traffic circle. That is, summarize the conditions under which each type of traffic-control method should be used. When traffic lights are recommended, explain a method for determining how many seconds each light should remain green (which may vary according to the time of day and other factors). Illustrate how your model works with specific examples.",
+  "dataset_path": [],
+  "dataset_description": {},
+  "variable_description": {},
+  "addendum": ""
+}

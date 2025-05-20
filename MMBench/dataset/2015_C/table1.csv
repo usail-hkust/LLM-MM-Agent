@@ -1,0 +1,8 @@
+Level of Position,Median time to recruit (months),Median cost of recruitment ($),Number of Employees at this level,Average annual salary rate for this level ($),Average annual training cost($)
+Senior manager/Executive,7,1.2考,10,8考,0.5考
+Junior manager/Executive,6,0.7考,20,4考,0.6考
+Experienced supervisor (Branch),5,0.6考,25,2考,0.2考
+Inexperienced supervisor (Division),4,0.6考,25,1.5考,0.3考
+Experienced employee,3,0.3考,110,考,0.1考
+Inexperienced employee,1,0.1考,150,0.9考,0.3考
+Administrative clerk,2,0.3考,30,0.9考,0.05考

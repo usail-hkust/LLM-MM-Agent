@@ -1,0 +1,8 @@
+{
+  "background": "\t\nHeavily-traveled toll roads such as the Garden State Parkway, Interstate 95, and so forth, are multi-lane divided highways that are interrupted at intervals by toll plazas. Because collecting tolls is usually unpopular, it is desirable to minimize motorist annoyance by limiting the amount of traffic disruption caused by the toll plazas. Commonly, a much larger number of tollbooths is provided than the number of travel lanes entering the toll plaza. Upon entering the toll plaza, the flow of vehicles fans out to the larger number of tollbooths, and when leaving the toll plaza, the flow of vehicles is required to squeeze back down to a number of travel lanes equal to the number of travel lanes before the toll plaza. Consequently, when traffic is heavy, congestion increases upon departure from the toll plaza. When traffic is very heavy, congestion also builds at the entry to the toll plaza because of the time required for each vehicle to pay the toll.",
+  "problem_requirement": "Make a model to help you determine the optimal number of tollbooths to deploy in a barrier-toll plaza. Explicitly consider the scenario where there is exactly one tollbooth per incoming travel lane. Under what conditions is this more or less effective than the current practice? Note that the definition of \"optimal\" is up to you to determine.",
+  "dataset_path": [],
+  "dataset_description": {},
+  "variable_description": {},
+  "addendum": ""
+}

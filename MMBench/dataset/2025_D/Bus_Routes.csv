@@ -1,0 +1,67 @@
+﻿Route_Name,Route_Type,Route_Numb,Distributi,Shape__Length
+KENT ISLAND - ANNAPOLIS/BALTIMORE,MTA Commuter Bus,210,E1 - Public Domain - Internal Use Only,0.243663477
+BALTIMORE - ANNAPOLIS,MTA Commuter Bus,215,E1 - Public Domain - Internal Use Only,0.244740073
+COLUMBIA - BALTIMORE,MTA Commuter Bus,310,E1 - Public Domain - Internal Use Only,0.243663477
+LAUREL - BALTIMORE,MTA Commuter Bus,320,E1 - Public Domain - Internal Use Only,0.21182485
+CHURCHVILLE - BALTIMORE,MTA Commuter Bus,410,E1 - Public Domain - Internal Use Only,0.38804184
+HICKORY - HOPKINS HOSPITAL,MTA Commuter Bus,411,E1 - Public Domain - Internal Use Only,0.400822012
+HAVRE DE GRACE - HOPKINS,MTA Commuter Bus,420,E1 - Public Domain - Internal Use Only,0.398179112
+DOWNTOWN - CROMWELL BRIDGE,MTA Local Bus - Express BusLink,103,E1 - Public Domain - Internal Use Only,0.201361129
+CROMWELL BRIDGE - HARBOR EAST,MTA Local Bus - Express BusLink,104,E1 - Public Domain - Internal Use Only,0.204417927
+CEDONIA - DOWNTOWN,MTA Local Bus - Express BusLink,105,E1 - Public Domain - Internal Use Only,0.22085774
+DOWNTOWN - PERRY HALL,MTA Local Bus - Express BusLink,115,E1 - Public Domain - Internal Use Only,0.159144149
+WHITE MARSH - DOWNTOWN/HOPKINS HOSP,MTA Local Bus - Express BusLink,120,E1 - Public Domain - Internal Use Only,0.508037424
+COLUMBIA - DOWNTOWN/HARBOR EAST,MTA Local Bus - Express BusLink,150,E1 - Public Domain - Internal Use Only,0.248803616
+STATE CENTER - CARNEY/HILLENDALE,MTA Local Bus - Express BusLink,154,E1 - Public Domain - Internal Use Only,0.253222097
+DOWNTOWN/HOPKINS HOSPITAL - ESSEX,MTA Local Bus - Express BusLink,160,E1 - Public Domain - Internal Use Only,0.329521282
+W BALTIMORE MARC - TRADEPOINT,MTA Local Bus - Express BusLink,163,E1 - Public Domain - Internal Use Only,0.320640582
+WOODBERRY - CANTON CROSSING,MTA Local Bus - LocalLink,21,E1 - Public Domain - Internal Use Only,0.187126453
+MONDAWMIN - BAYVIEW,MTA Local Bus - LocalLink,22,E1 - Public Domain - Internal Use Only,0.252544101
+BROOKLYN - MONDAWMIN,MTA Local Bus - LocalLink,26,E1 - Public Domain - Internal Use Only,0.210888171
+MORAVIA - ROGERS AVE METRO,MTA Local Bus - LocalLink,28,E1 - Public Domain - Internal Use Only,0.237477443
+MONDAWMIN - BROOKLYN,MTA Local Bus - LocalLink,29,E1 - Public Domain - Internal Use Only,0.284750168
+ROGERS AVE - HOLLANDER RIDGE,MTA Local Bus - LocalLink,30,E1 - Public Domain - Internal Use Only,0.305806217
+SINAI HOSPITAL - SECURITY SQ MALL,MTA Local Bus - LocalLink,31,E1 - Public Domain - Internal Use Only,0.090249432
+MT WASHINGTON LIGHT RAIL - OVERLEA,MTA Local Bus - LocalLink,33,E1 - Public Domain - Internal Use Only,0.242812966
+FALLS RD/GREENSPRING- WESTVIEW MALL,MTA Local Bus - LocalLink,34,E1 - Public Domain - Internal Use Only,0.191120806
+TOWSON TOWN CENTER - FOX RIDGE,MTA Local Bus - LocalLink,36,E1 - Public Domain - Internal Use Only,0.082660652
+TOWSON - DOWNTOWN,MTA Local Bus - LocalLink,51,E1 - Public Domain - Internal Use Only,0.160291623
+GREENMOUNT NORTH - STELLA MARIS,MTA Local Bus - LocalLink,52,E1 - Public Domain - Internal Use Only,0.068703233
+STATE CENTER - TOWSON,MTA Local Bus - LocalLink,53,E1 - Public Domain - Internal Use Only,0.158593354
+STATE CENTER - CARNEY/HILLENDALE,MTA Local Bus - LocalLink,54,E1 - Public Domain - Internal Use Only,0.225077937
+DOWNTOWN - WHITE MARSH,MTA Local Bus - LocalLink,56,E1 - Public Domain - Internal Use Only,0.205025345
+BELAIR-EDISON CIRCULATOR,MTA Local Bus - LocalLink,57,E1 - Public Domain - Internal Use Only,0.111018203
+MORAVIA - WHISPERING WOODS,MTA Local Bus - LocalLink,59,E1 - Public Domain - Internal Use Only,0.190305018
+CCBC ESSEX - TURNER STATION,MTA Local Bus - LocalLink,62,E1 - Public Domain - Internal Use Only,0.020127295
+GARDENVILLE - TRADEPOINT ATLANTIC,MTA Local Bus - LocalLink,63,E1 - Public Domain - Internal Use Only,0.214230359
+DOWNTOWN - DUNDALK,MTA Local Bus - LocalLink,65,E1 - Public Domain - Internal Use Only,0.165120931
+DOWNTOWN - MARLEY NECK,MTA Local Bus - LocalLink,67,E1 - Public Domain - Internal Use Only,0.231020563
+PATAPSCO STATION - JUMPERS HOLE,MTA Local Bus - LocalLink,69,E1 - Public Domain - Internal Use Only,0.184843811
+PATAPSCO STATION - ANNAPOLIS,MTA Local Bus - LocalLink,70,E1 - Public Domain - Internal Use Only,0.184843811
+DOWNTOWN - PATAPSCO LIGHT RAIL,MTA Local Bus - LocalLink,71,E1 - Public Domain - Internal Use Only,0.222783877
+STATE CENTER - PATAPSCO STATION,MTA Local Bus - LocalLink,73,E1 - Public Domain - Internal Use Only,0.148767012
+PATAPSCO LIGHT RAIL - ARUNDEL MILLS,MTA Local Bus - LocalLink,75,E1 - Public Domain - Internal Use Only,0.131659836
+CCBC - DOWNTOWN,MTA Local Bus - LocalLink,76,E1 - Public Domain - Internal Use Only,0.16194506
+W BALTIMORE MARC - CATONSVILLE,MTA Local Bus - LocalLink,77,E1 - Public Domain - Internal Use Only,0.143332933
+DOWNTOWN - CMS,MTA Local Bus - LocalLink,78,E1 - Public Domain - Internal Use Only,0.165598741
+MONDAWMIN - CMS,MTA Local Bus - LocalLink,79,E1 - Public Domain - Internal Use Only,0.131525945
+DOWNTOWN - ROGERS AVE METRO STATION,MTA Local Bus - LocalLink,80,E1 - Public Domain - Internal Use Only,0.149068379
+PARK CIRCLE - REISTERSTOWN PLAZA,MTA Local Bus - LocalLink,82,E1 - Public Domain - Internal Use Only,0.238953956
+MONDAWMIN - OLD COURT METRO,MTA Local Bus - LocalLink,83,E1 - Public Domain - Internal Use Only,0.094182251
+PENN-NORTH - MILFORD MILL,MTA Local Bus - LocalLink,85,E1 - Public Domain - Internal Use Only,0.148504927
+ROGERS AVE - OWINGS MILLS,MTA Local Bus - LocalLink,89,E1 - Public Domain - Internal Use Only,0.047068839
+MONDAWMIN - SINAI HOSPITAL,MTA Local Bus - LocalLink,91,E1 - Public Domain - Internal Use Only,0.091648468
+FORT MCHENRY - SINAI HOSPITAL,MTA Local Bus - LocalLink,94,E1 - Public Domain - Internal Use Only,0.241914839
+DOWNTOWN - ROLAND PARK,MTA Local Bus - LocalLink,95,E1 - Public Domain - Internal Use Only,0.184581554
+CMS - JOHNS HOPKINS BAYVIEW,MTA Local Bus - CityLink,CityLink BLUE,E1 - Public Domain - Internal Use Only,0.322938684
+WHITE MARSH - DOWNTOWN,MTA Local Bus - CityLink,CityLink BROWN,E1 - Public Domain - Internal Use Only,0.185661171
+WALBROOK JUNCTION - CANTON,MTA Local Bus - CityLink,CityLink GOLD,E1 - Public Domain - Internal Use Only,0.240359202
+DOWNTOWN - TOWSON,MTA Local Bus - CityLink,CityLink GREEN,E1 - Public Domain - Internal Use Only,0.188931641
+NW HOSPITAL - HARBOR EAST,MTA Local Bus - CityLink,CityLink LIME,E1 - Public Domain - Internal Use Only,0.222559727
+MONDAWMIN - DUNDALK,MTA Local Bus - CityLink,CityLink NAVY,E1 - Public Domain - Internal Use Only,0.25723271
+ESSEX - WEST BALTIMORE MARC,MTA Local Bus - CityLink,CityLink ORANGE,E1 - Public Domain - Internal Use Only,0.215727191
+CEDONIA - WEST BALTIMORE MARC,MTA Local Bus - CityLink,CityLink PINK,E1 - Public Domain - Internal Use Only,0.24851964
+HOPKINS HOSPITAL - CATONSVILLE,MTA Local Bus - CityLink,CityLink PURPLE,E1 - Public Domain - Internal Use Only,0.203053858
+DOWNTOWN - TOWSON/LUTHERVILLE,MTA Local Bus - CityLink,CityLink RED,E1 - Public Domain - Internal Use Only,0.131714461
+CURTIS BAY - HOPKINS/MORGAN,MTA Local Bus - CityLink,CityLink SILVER,E1 - Public Domain - Internal Use Only,0.329764434
+MONDAWMIN - UMBC/PATAPSCO,MTA Local Bus - CityLink,CityLink YELLOW,E1 - Public Domain - Internal Use Only,0.276024729

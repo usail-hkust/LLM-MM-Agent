@@ -1,0 +1,8 @@
+{
+  "background": "Historically, airlines know that only a certain percentage of passengers who have made reservations on a particular flight will actually take that flight. Consequently, most airlines overbook-that is, they take more reservations than the capacity of the aircraft. Occasionally, more passengers will want to take a flight than the capacity of the plane leading to one or more passengers being bumped and thus unable to take the flight for which they had reservations.\n\nAirlines deal with bumped passengers in various ways. Some are given nothing, some are booked on later flights on other airlines, and some are given some kind of cash or airline ticket incentive.",
+  "problem_requirement": "Consider the overbooking issue in light of the current situation:\nLess flights by airlines from point A to point B\nHeightened security at and around airports\nPassengers' fear\nLoss of billions of dollars in revenue by airlines to date\n\nBuild a mathematical model that examines the effects that different overbooking schemes have on the revenue received by an airline company in order to find an optimal overbooking strategy, i.e., the number of people by which an airline should overbook a particular flight so that the company's revenue is maximized. Insure that your model reflects the issues above, and consider alternatives for handling \"bumped\" passengers. Additionally, write a short memorandum to the airline's CEO summarizing your findings and analysis.",
+  "dataset_path": [],
+  "dataset_description": {},
+  "variable_description": {},
+  "addendum": ""
+}

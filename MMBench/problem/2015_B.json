@@ -1,0 +1,8 @@
+{
+  "background": "Recall the lost Malaysian flight MH370.",
+  "problem_requirement": "Build a generic mathematical model that could assist \"searchers\" in planning a useful search for a lost plane feared to have crashed in open water such as the Atlantic, Pacific, Indian, Southern, or Arctic Ocean while flying from Point A to Point B. Assume that there are no signals from the downed plane. Your model should recognize that there are many different types of planes for which we might be searching and that there are many different types of search planes, often using different electronics or sensors.",
+  "dataset_path": [],
+  "dataset_description": {},
+  "variable_description": {},
+  "addendum": "Additionally, prepare a 1-2 page non-technical paper for the airlines to use in their press conferences concerning their plan for future searches."
+}

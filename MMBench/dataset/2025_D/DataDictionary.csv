@@ -1,0 +1,115 @@
+data file,variables,explanation,example
+Bus_Routes,Route_Name,"The name of the public transportation route, such as a bus or rail route, that serves a specific geographic area. ","For example, ""BALTIMORE - ANNAPOLIS""."
+,Route_Type,Refers to the type of public transportation service the route represents,"MTA Commuter Bus or 
+MTA Local Bus - Express BusLink or  
+MTA Local Bus - LocalLink or 
+MTA Local Bus - CityLink"
+,Route_Numb,The numerical identifier assigned to the route. ,"For instance, ""Route 22"" or ""Route 210"" or ""City Link Green"""
+,Distributi,"Likely refers to the distribution of ridership data or traffic data, which could include how ridership is distributed across different times, days, or segments of the route. It could show the distribution of passengers during peak hours versus off-peak hours, or how passengers are spread out across the route.","All labeled with ""E1 - Public Domain - Internal Use Only"""
+,Shape__Length,Refers to the length of the route or road segment in GIS (Geographic Information System) in internal units. This data helps provide the physical extent of the route.,A numeric value between 0.02 and 0.5.
+Bus_Stops,Y,The latitude coordinate of a point (node) in the OSM dataset. Used for geographic positioning.,A numeric value between 39.2 and 39.4.
+,X,The longitude coordinate of a point (node) in the OSM dataset. Also used for geographic positioning.,A numeric value between -76.8 and -76.5.
+,stop_name,The name or label of a particular transit stop or station.  It may also indicate the side of the street and the direction of the transit vehicle.,"For example, ""CYLBURN AVE & GREENSPRING AVE fs wb"""
+,Rider_On,The number of passengers who boarded the transit vehicle at a given stop within a specified time period.,Numeric values.
+,Rider_Off,The number of passengers who exited the transit vehicle at a given stop within a specified time period.,Numeric values.
+,Rider_Tota,The total number of passengers either boarding or exiting at a specific transit stop (usually a sum of Rider_On and Rider_Off).,Numeric values.
+,Stop_Rider,"The total number of riders at a stop, potentially referring to either the total Rider_On or Rider_Off counts, or a combination, for that particular stop.",Numeric values.
+,Routes_Ser,The identifier or description of the routes served by a specific transit stop. ,"This could list the bus, light rail, or metro routes that have stops at that location."
+,Distributi,"Likely refers to the distribution of ridership data, possibly showing patterns such as time-of-day distributions, peak hours, or ridership across different days or routes.","All labeled with ""E1 - Public Domain - Internal Use Only"""
+,Mode,Refers to the mode of transportation being used.,"For example, ""Bus"" or ""Commuter Bus"" or a combination of the two."
+,Shelter,Indicates whether the transit stop has a shelter or other weather protection for passengers. ,"""yes"" or ""no"""
+,County,The name or code of the county where the transit stop is located. This is especially relevant in metropolitan areas with transit routes crossing county lines.,"""Baltimore City"" or ""Baltimore County"""
+,stop_id,"A unique identifier assigned to each transit stop in the system, allowing it to be distinctively referenced in datasets.","Numeric value, not values are used."
+nodes_all & nodes_drive,osmid,The unique identifier for an element in OpenStreetMap (OSM). This represent a node.,Numeric value
+,y,The latitude coordinate of a point (node) in the OSM dataset. Used for geographic positioning.,A numeric value between 39 and 40.
+,x,The longitude coordinate of a point (node) in the OSM dataset. Also used for geographic positioning.,A numeric value between -77 and -76.
+,street_count,The number of streets (or ways) connected to a particular node. It can indicate intersections or endpoints.,An integer between 1 and 15.
+,highway,Indicates the type of road or path. ,"It can represent values like residential, primary, secondary, footway, etc., based on OSM's tagging system.  For example, motorway or crossing."
+,ref,"A reference code for the road, path, or other infrastructure. ","This might correspond to road numbers (e.g., ""I-80"" for an interstate)."
+,railway,Specifies if the node or way is part of a railway. ,"For example, level crossing or subway entrance."
+,junction,"Represents information about a junction, such as its type. ","For example, a roundabout."
+,geometry,"A spatial representation of a line or area, often stored in formats like WKT (Well-Known Text). It describes the shape or path of a feature such as a road or boundary.","For example, nodes are all points on a map."
+edges_all & edges_drive,u,"The starting node of a segment (edge) in a graph representation of the map, identified by its OSM ID.",Numeric value corresponding to nodes.
+,v,"The ending node of a segment (edge) in the graph representation of the map, identified by its OSM ID.",Numeric value corresponding to nodes.
+,key,A unique identifier or key for distinguishing multiple edges between the same pair of nodes u and v. Often used when there are multiple parallel roads or paths.,An integer less than 5.
+,osmid,"The unique identifier for the edge (road, path, or other infrastructure) in OSM. It can refer to the way or relation it belongs to.",Numeric value
+,bridge,Indicates whether the segment is a bridge (yes or no). It may also include additional details about the bridge.,Blank indicates no.
+,highway,"Describes the type of road or pathway, similar to the highway field in the previous set. ","Examples include motorway, residential, footway, etc."
+,lanes,The number of lanes on the road segment. ,Integer value.
+,maxspeed,"The maximum speed limit on the road, units given in mph.",55mph or a list of different speed limits on a given road.
+,oneway,Indicates whether the road is one-way (yes or no). It may also include specific flow directions like -1 for reversed direction.,True or False
+,ref,"A reference code for the road, such as the local, county, state, or federal roads.","Examples include I 95, US 1, or MD 140."
+,reversed,A boolean flag (True or False) indicating if the direction of the edge in the graph is opposite to the direction in the underlying OSM data.,"False means that u to v appears in the OSM database.  True means that v to u appears in the database.  For a one way road, all ""reversed"" are false.  For a two-way road, one direction will be true and the other false."
+,length,"The length of the road segment, often measured in meters.","For example, the section of road is 55.489 meters long."
+,geometry,"The spatial representation of the segment, typically stored in a format like WKT (Well-Known Text) or GeoJSON. It defines the path or curve of the road.","For example, edges are all linestrings on a map."
+,name,"The name of the road, pathway, or segment, if available. ","For example, ""Main Street"" or ""Broadway."""
+,service,Describes the type of service associated with the road,"Examples include alley, driveway, or parking_aisle."
+,access,Defines accessibility restrictions,"Examples include private, no, or permissive."
+,width,The width of the road or pathway in meters.,Numeric value or several numeric values
+,tunnel,"Indicates whether the segment is a tunnel (yes or no), possibly with additional details about the tunnel.",yes or no
+,area,"Specifies whether the segment is part of a mapped area (yes or no). For example, it could denote plazas or other open spaces.",no
+,junction,Provides details about the type of junction.,"For example, a roundabout, jughandle, or intersection."
+MDOT_SHA_Annual_Average_Daily_Traffic_Baltimore,node start,The intersection of all nodes between the Road Name and the Start of the Road Section.,List of OSMid for the nodes.
+,node(s) end,The intersection of all nodes between the Road Name and the End of the Road Section.,List of OSMid for the nodes.
+,GIS Object ID,A unique identifier for each geographic object in the GIS (Geographic Information System) dataset.,Numeric value
+,Station ID,A unique identifier assigned to each traffic counting station.,"Numeric code following S, B, or V"
+,County Code,A numeric code representing a specific county in Maryland.,3 or 24
+,County Name,The name of the county where the traffic station is located.,Baltimore County or Baltimore City
+,Municipal Code,"A unique identifier for the municipality (town, city, or village) where the traffic data is collected.",0 or 999
+,Municipality Name,The name of the municipality where the traffic station is located.,Baltimore City or None
+,Road Name,The name of the road where the traffic count is recorded.,10th St
+,Route Prefix,A prefix used to identify the road route.,"For example,  ""MD"" for Maryland highways."
+,Route Number,The specific number assigned to the route.,MD 100
+,Route Suffix,"A suffix used for route identification, usually for routes with specific subdivisions",MD 100A
+,Milepoint,The specific mile marker or point along the road where the traffic count is taken.,Distance from the corner in meters or -1 for no value.
+,Begin Section,The starting point of a road section for traffic count purposes.,Numerical distance in meters of the starting point of the road section.
+,End Section,The ending point of a road section for traffic count purposes.,Numerical distance from the starting point of the road.
+,Station Description,A textual description of the location or characteristics of the traffic station.,"e.g., 10TH ST - BETWEEN MD 173 & WASHBURN AVE"
+,Road Section,"A specific segment of a road between two points (often between the ""Begin Section"" and ""End Section"").","e.g., It is the section of Academy Ave from GWYNNBROOK AVE TO HIGH FALCON RD"
+,Rural / Urban,The classification of the area as either rural (less developed) or urban (densely developed).,Rural or Urban
+,Functional Class Code,"A code that classifies the road based on its function (e.g., local road, arterial, freeway).",A number 1 thru 7 corresponding to the functional classes below.
+,Functional Class,The category of road based on its role in the transportation network.,"e.g., interstate or local road"
+,Route ID,The current identifier for the road or route in the transportation network.,"e.g., 03000CO01213--1-----"
+,Mainline,Indicates whether the station is located on the primary (mainline) portion of a route.,1 or 2
+,Peak Hour Direction,The direction of traffic flow that is most prominent during peak traffic hours.,"0, 1, 2, or 3"
+,Number of Lanes,The total number of lanes in the direction of travel for the given road section.,Small integer value
+,Counted / Factored,Indicates whether the traffic counts are direct (counted) or adjusted (factored) based on known traffic patterns.,"C = counted, F = factored"
+,STMP Sequence,A sequence number used to identify the position or order of the station within a system or dataset.,Integer value less than 10
+,K-Factor,A factor used to adjust traffic count data for peak hour traffic based on a statistical model.  Proportion of Annual Average Daily Traffic occurring in the 30th highest hour volume for Continuous count station and Peak hour volume for Short duration count stations.,Numeric value
+,D-Factor,"A factor used to adjust traffic data for directional traffic flow (in some datasets, related to specific time periods).  Percentage of traffic moving in the peak direction during the 30th highest hour volume for Continuous count station and Peak hour volume for Short duration count stations.",Numeric value
+,North-East Split,Percentage of traffic in the North or East Direction.,Numeric between 0 and 100.
+,South-West Split,Percentage of traffic in the South or West Direction.,Numeric between 0 and 100.
+,Average Vehicle Miles Traveled (AVMT),A measure of the total miles traveled by vehicles in a given area over a specific time period.,Numeric value
+,Link to Count Details,A reference to a webpage or document containing more detailed information about the specific traffic count data.,URL
+,AADT 2014,Annual Average Daily Traffic is the number of vehicles expected to pass a given location on an average day of the year.  This AADT is for the year 2014.,Numeric value
+,AADT 2015,The AADT for the year 2015.,Numeric value
+,AADT 2016,The AADT for the year 2016.,Numeric value
+,AADT 2017,The AADT for the year 2017.,Numeric value
+,AADT 2018,The AADT for the year 2018.,Numeric value
+,AADT (Current),The most recent AADT data available at the time of the query.,Numeric value
+,AAWDT 2014,The Annual Average Weekday Traffic (AAWDT) is the number of vehicles expected to pass a given location on an average Weekday (Monday – Friday).  This is for the year 2014.,Numeric value
+,AAWDT 2015,The AAWDT for the year 2015.,Numeric value
+,AAWDT 2016,The AAWDT for the year 2016.,Numeric value
+,AAWDT 2017,The AAWDT for the year 2017.,Numeric value
+,AAWDT 2018,The AAWDT for the year 2018.,Numeric value
+,AAWDT (Current),The most recent AAWDT data available at the time of the query.,Numeric value
+,AADT Motorcycle,The Annual Average Daily Traffic count specifically for motorcycles.,Numeric value
+,AADT Car,The AADT specifically for cars.,Numeric value
+,AADT Light Truck,The AADT specifically for light trucks.,Numeric value
+,AADT Bus,The AADT specifically for buses.,Numeric value
+,AADT Single-Unit Truck,The AADT specifically for single-unit trucks.  Percentage of Trucks (FHWA Classes 4 -7).,Numeric value
+,AADT Combination-Unit Truck,"The AADT specifically for combination-unit trucks (e.g., trucks with trailers).  Percentage of Trucks (FHWA Classes 8-13).",Numeric value
+,Location Error,The degree of error or uncertainty in the geographical location of the traffic station.,All blank
+,Shape__Length0,"The length of the road or section, likely measured in meters, stored as a shape attribute in the dataset.",Numeric value
+,GIS Shape Length,"The length of the road or section in GIS units, likely in meters.",Numeric value
+,AADT 2019,The AADT for the year 2019.,Numeric value
+,AAWDT 2019,The AAWDT for the year 2019.,Numeric value
+,AADT 2020,The AADT for the year 2020.,Numeric value
+,AAWDT 2020,The AAWDT for the year 2020.,Numeric value
+,AADT 2021,The AADT for the year 2021.,Numeric value
+,AAWDT 2021,The AAWDT for the year 2021.,Numeric value
+,AADT 2022,The AADT for the year 2022.,Numeric value
+,AAWDT 2022,The AAWDT for the year 2022.,Numeric value
+,Global ID,A unique identifier.,"Series of numbers, letters, and symbols."
+Edge_Names_With_Nodes,Street_Name,Name of the streets that appear in the network,"e.g., 3rd Street"
+,Nodes,List of nodes that appear along that street.,List of OSMid for the nodes.

@@ -1,0 +1,8 @@
+{
+  "background": "An exciting action scene in a movie is going to be filmed, and you are the stunt coordinator! A stunt person on a motorcycle will jump over an elephant and land in a pile of cardboard boxes to cushion their fall. You need to protect the stunt person, and also use relatively few cardboard boxes (lower cost, not seen by camera, etc.).",
+  "problem_requirement": "Your job is to:\n\ndetermine what size boxes to use\ndetermine how many boxes to use\ndetermine how the boxes will be stacked\ndetermine if any modifications to the boxes would help\ngeneralize to different combined weights (stunt person & motorcycle) and different jump heights\nNote that, in \"Tomorrow Never Dies\", the James Bond character on a motorcycle jumps over a helicopter.",
+  "dataset_path": [],
+  "dataset_description": {},
+  "variable_description": {},
+  "addendum": ""
+}

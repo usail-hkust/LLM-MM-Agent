@@ -1,0 +1,51 @@
+summerOly_medal_counts.csv,,
+variables,explanation,example
+Rank,Rank of country based on total medals won,"1, 2"
+NOC,Name of country as recorded for that Olympics,"China, France"
+Gold,Number of Gold medals the country earned,"0, 1, 2"
+Silver,Number of Silver medals the country earned,"0, 1, 2"
+Bronze,Number of Bronze medals the country earned,"0, 1, 2"
+Total,Number of Total medals the country earned,"0, 1, 2"
+Year,Olympic year,"1896, 1900"
+,,
+,,
+summerOly_hosts.csv,,
+variables,explanation,example
+Year,Olympic year,"1896, 1900"
+Host,"Location where olympics were held (city, country)","St. Louis, United States"
+,,
+,,
+summerOly_programs.csv,,
+variables,explanation,example
+Sport,Sport category,"Aquatics, Cycling"
+Discipline,Discipline within the sport category,"Artistic swimming, Diving"
+Code,Code for the discipline,"SWA, DIV"
+Year,Number of events in disipline for that year,"0, 1"
+Data set of current and discontinued summer program.,,
+Column Descriptors,,
+Sport and Discipline: ,The sports (and disciplines) make up the current and discontinued Summer Olympic Games official program and are listed alphabetically according to the name used by the IOC. ,
+Code: ,Each discipline is marked with a unique 3-character identifier code by the IOC. ,
+Sports Governing Body:,A listing of the sports governing bodies associated with Olympic sports.,
+1896 – 2028: ,The four number code in each column represents the year of the associated Olympic Games. ,
+Figures in each cell of the associated column indicate the number of events for each sport (or disciplane) contested at the respective Games; a bullet (•) denotes that the sport was contested as a demonstration or unofficial sport. ,,
+"* The 1906 Intercalated Olympic Games were to be a series of International Olympic Games halfway between what is now known as the Games of the Olympiad. This proposed series of Games was always to be held in Athens and was to have equal status with the international Games. However, the only such Games were held in 1906.",,
+"S1^ The World Baseball Softball Confederation, which currently governs both baseball and softball, was created by a 2013 merger of two former governing bodies – the International Baseball Federation and the International Softball Federation. Baseball and softball were governed separately at all Olympics before 2013.",,
+S2^ AIBA/IBA was the recognised body of boxing until 2023.,,
+"S3^ Sailing and rowing were included in the program of the 1896 Games, but were cancelled due to bad weather.",,
+"S4^ At the time skateboarding was announced as part of the 2020 Summer Games, the sport was governed by the International Skateboarding Federation. That body merged with Fédération Internationale de Roller Sports in September 2017 to form the current World Skate.",,
+"S5^ Before 1924, ice sports like figure skating and ice hockey were held at the Summer Olympic Games. These two sports made their debuts at the 1908 and the 1920 Summer Olympics respectively, but in 1924 they were moved to the first edition of the Winter Olympic Games and became permanent fixtures on the sports program for the Winter Olympics from then on.",,
+Sourced from Wikipedia https://en.wikipedia.org/wiki/Olympic_sports,,
+,,
+,,
+summerOly_athletes.csv,,
+variables,explanation,example
+Name,Athlete name,"Cai Yun, Carl Lewis"
+Sex,Sex of athlete,"F, M"
+Team,Country name as recorded at the Olympics,"China, France"
+NOC,Name of Country (code),"CHN, FRA"
+Year,Olympic year,"1896, 1900"
+Season,Type of Olympics,Summer
+City,City where Olympics were held,"Beijing, Paris"
+Sport,Sport category,"Aquatics, Cycling"
+Event,Event within the sport,Gymnastics Men's Rings
+Medal,Medal earned,"No medal, Gold"

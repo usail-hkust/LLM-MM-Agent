@@ -1,0 +1,8 @@
+{
+  "background": "",
+  "problem_requirement": "Develop an algorithm to construct Sudoku puzzles of varying difficulty. Develop metrics to define a difficulty level. The algorithm and metrics should be extensible to a varying number of difficulty levels. You should illustrate the algorithm with at least 4 difficulty levels. Your algorithm should guarantee a unique solution. Analyze the complexity of your algorithm. Your objective should be to minimize the complexity of the algorithm and meet the above requirements.",
+  "dataset_path": [],
+  "dataset_description": {},
+  "variable_description": {},
+  "addendum": ""
+}
