@@ -77,7 +77,7 @@ Here, `task` corresponds to the problem ID from MM-Bench (e.g., `"2024_C"` refer
 1. **Clone the Repository**
 
 ```bash
-git clone git@github.com:your-repo/MM-Agent.git
+git clone git@github.com:usail-hkust/LLM-MM-Agent.git
 ```
 
 2. **Create and Activate the Conda Environment**
