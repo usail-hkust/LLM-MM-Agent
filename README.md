@@ -108,6 +108,7 @@ Source code is licensed under the **\[CC BY-NC]**.
 
 ## 📚 References
 
+```bash
 @misc{liu2025mmagentllmagentsrealworld,  
    title={MM-Agent: LLM as Agents for Real-world Mathematical Modeling Problem},  
    author={Fan Liu and Zherui Yang and Cancheng Liu and Tianrui Song and Xiaofeng Gao and Hao Liu},  
@@ -117,3 +118,4 @@ Source code is licensed under the **\[CC BY-NC]**.
    primaryClass={cs.AI},  
    url={https://arxiv.org/abs/2505.14148}  
 }
+```
