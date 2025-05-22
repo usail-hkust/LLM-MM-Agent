@@ -106,3 +106,14 @@ pip install -r requirements.txt
 Source code is licensed under the **\[CC BY-NC]**.
 
 
+## 📚 References
+
+@misc{liu2025mmagentllmagentsrealworld,  
+   title={MM-Agent: LLM as Agents for Real-world Mathematical Modeling Problem},  
+   author={Fan Liu and Zherui Yang and Cancheng Liu and Tianrui Song and Xiaofeng Gao and Hao Liu},  
+   year={2025},  
+   eprint={2505.14148},  
+   archivePrefix={arXiv},  
+   primaryClass={cs.AI},  
+   url={https://arxiv.org/abs/2505.14148}  
+}
