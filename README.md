@@ -11,6 +11,8 @@ We propose a **Mathematical Modeling Agent** that simulates the real-world human
 
 
 
+Our paper is available at [arXiv](https://arxiv.org/abs/2505.14148).
+
 ---
 
 ## 🔬 How Does the Mathematical Modeling Agent Work?
@@ -109,7 +111,7 @@ Source code is licensed under the **\[CC BY-NC]**.
 ## 📚 References
 
 ```bash
-@misc{liu2025mmagentllmagentsrealworld,  
+@misc{mmagent,  
    title={MM-Agent: LLM as Agents for Real-world Mathematical Modeling Problem},  
    author={Fan Liu and Zherui Yang and Cancheng Liu and Tianrui Song and Xiaofeng Gao and Hao Liu},  
    year={2025},  
