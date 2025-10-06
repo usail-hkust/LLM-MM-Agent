@@ -86,7 +86,7 @@ def json_to_markdown(paper):
             markdown_lines.append(task_analysis + "\n")
 
             # Mathematical Formulas
-            task_formulas = task.get('mathematical_formulas', 'No formulas provided.')
+            task_formulas = task.get('preliminary_formulas', 'No formulas provided.')
             markdown_lines.append("#### Mathematical Formulas")
             if isinstance(task_formulas, list):
                 for formula in task_formulas:
@@ -101,12 +101,12 @@ def json_to_markdown(paper):
             markdown_lines.append(task_modeling + "\n")
 
             # Result
-            task_result = task.get('result', 'No result provided.')
+            task_result = task.get('solution_interpretation', 'No result provided.')
             markdown_lines.append("#### Result")
             markdown_lines.append(task_result + "\n")
 
             # Answer
-            task_answer = task.get('answer', 'No answer provided.')
+            task_answer = task.get('subtask_outcome_analysis', 'No answer provided.')
             markdown_lines.append("#### Answer")
             markdown_lines.append(task_answer + "\n")
 
