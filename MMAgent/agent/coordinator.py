@@ -55,9 +55,8 @@ class Coordinator:
     def analyze_dependencies(self, modeling_problem: str, problem_analysis: str, modeling_solution: str, task_descriptions: str, with_code: bool):
         task_dependency_analysis = self.analyze(len(task_descriptions), modeling_problem, problem_analysis, modeling_solution, task_descriptions, with_code)
         self.task_dependency_analysis = task_dependency_analysis.split('\n\n')
-        count = 0
+        
         for i in range(5):
-            count += 1
             try:
                 dependency_DAG = self.dag_construction(len(task_descriptions), modeling_problem, problem_analysis, modeling_solution, task_descriptions, task_dependency_analysis)
                 dependency_DAG_string = dependency_DAG.strip('```json\n').strip('```')
@@ -65,10 +64,11 @@ class Coordinator:
                 break
             except:
                 continue
-        if count == 5:
+        else:
+            # If the loop completes without breaking (all 5 attempts failed)
             sys.exit("Fail at Task Dependency Analysis")
+        
         order = self.compute_dag_order(self.DAG)
-
         return order
     
     
