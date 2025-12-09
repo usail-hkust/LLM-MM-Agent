@@ -159,6 +159,20 @@ Source code is licensed under the **\[CC BY-NC]**.
 ```
 
 
+## Misc
+
+<div align="center">
+
+[![Stargazers repo roster for @usail-hkust/LLM-MM-Agent](https://reporoster.com/stars/usail-hkust/LLM-MM-Agent)](https://github.com/usail-hkust/LLM-MM-Agent/stargazers)
+
+[![Forkers repo roster for @usail-hkust/LLM-MM-Agent](https://reporoster.com/forks/usail-hkust/LLM-MM-Agent)](https://github.com/usail-hkust/LLM-MM-Agent/network/members)
+
+[![Star History Chart](https://api.star-history.com/svg?repos=usail-hkust/LLM-MM-Agent&type=Date)](https://star-history.com/#usail-hkust/LLM-MM-Agent&Date)
+
+</div>
+
+
+
 😝 If you like this project, don't forget to give it a ⭐!
 
 [![📈 Star History Chart](https://api.star-history.com/svg?repos=usail-hkust/LLM-MM-Agent&type=Date)](https://star-history.com/#usail-hkust/LLM-MM-Agent&Date)
