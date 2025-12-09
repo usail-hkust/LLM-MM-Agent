@@ -174,5 +174,17 @@ Source code is licensed under the **\[CC BY-NC]**.
 </div>
 
 
+---
+
+If you have any questions, feel free to reach out to the project maintainers:
+
+- **Project Leader:** [@luckyfan-cs](https://github.com/luckyfan-cs)  
+- **Demo Development Lead:** [@canchengliu](https://github.com/canchengliu)
+
+You're welcome to open an issue; we are happy to help!
+
+
+
+
 
 
