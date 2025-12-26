@@ -8,7 +8,7 @@
 
 ## 📰 新闻
 1. **2025-12**
-   🔥 **即将更新**：我们将很快发布最新升级版演示（双语）。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号。
+   🔥 **即将更新**：我们将很快发布最新升级版演示。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号。
 2. **2025-10**
    🚀 **MM-Agent 辅助两支本科生团队在 MCM/ICM 2025 中获得 Finalist 奖**（27,456 支队伍中的前 2.0%），证明了其作为*建模副驾驶*的实际效果。
    🔗  [演示地址](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)

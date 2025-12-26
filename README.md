@@ -8,8 +8,8 @@
 
 ## 📰 News
 1. **2025-12**
-   🔥 **Upcoming Update**: We will soon release the latest upgraded version of the demo (bilingual). Please **Star** 🌟 our repository! We will issue service accounts based on the Star list (due to limited server capacity).
-   (即将更新：我们将很快发布最新升级版演示（双语）。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号。)
+   🔥 **Upcoming Update**: We will soon release the latest upgraded version of the demo. Please **Star** 🌟 our repository! We will issue service accounts based on the Star list (due to limited server capacity).
+   (即将更新：我们将很快发布最新升级版演示。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号。)
 2. **2025-10**
    🚀 **MM-Agent assisted two undergraduate teams in winning the Finalist Award** (Top 2.0% among 27,456 teams) in **MCM/ICM 2025**, demonstrating its practical effectiveness as a *modeling copilot*.
    🔗  [Demo](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
