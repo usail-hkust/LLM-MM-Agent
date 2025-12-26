@@ -37,6 +37,32 @@ Our paper is available at [arXiv](https://arxiv.org/abs/2505.14148).
 
 > 💡 Note: Click the link above to watch the demo on GitHub.
 
+## 🚀 Core Features Walkthrough
+
+### 1. Project Creation
+Initialize your modeling workspace effortlessly.
+<img src="assets/step1_project_creation.png" width="100%">
+
+### 2. Upload Problem & Data
+Simply upload your problem statement and datasets.
+<img src="assets/step2_upload_data.png" width="100%">
+
+### 3. Automated Modeling
+The agent intelligently selects and builds mathematical models.
+<img src="assets/step3_modeling.png" width="100%">
+
+### 4. Data Analysis
+Execute complex data analysis and generate visualizations.
+<img src="assets/step4_analysis.png" width="100%">
+
+### 5. Paper Writing
+Auto-generate professional reports and academic papers.
+<img src="assets/step5_paper_writing.png" width="100%">
+
+### 6. Project Management
+Track and manage multiple modeling projects efficiently.
+<img src="assets/step6_project_management.png" width="100%">
+
 ## 🖼️ Framework Overview
 
 <div align="center">

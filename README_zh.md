@@ -36,6 +36,32 @@
 
 > 💡 提示：点击上方链接可在 GitHub 上直接观看演示。
 
+## 🚀 核心功能演示
+
+### 1. 项目创建 (Project Creation)
+轻松初始化您的建模工作区。
+<img src="assets/step1_project_creation.png" width="100%">
+
+### 2. 上传问题与数据 (Upload Problem & Data)
+简单上传您的问题描述和相关数据集。
+<img src="assets/step2_upload_data.png" width="100%">
+
+### 3. 自动建模 (Automated Modeling)
+智能体自动选择并构建数学模型。
+<img src="assets/step3_modeling.png" width="100%">
+
+### 4. 数据分析 (Data Analysis)
+执行复杂的数据分析并生成可视化图表。
+<img src="assets/step4_analysis.png" width="100%">
+
+### 5. 论文撰写 (Paper Writing)
+自动生成专业的建模报告和学术论文。
+<img src="assets/step5_paper_writing.png" width="100%">
+
+### 6. 项目管理 (Project Management)
+高效追踪和管理多个建模项目。
+<img src="assets/step6_project_management.png" width="100%">
+
 ---
 
 ## 🔬 数学建模智能体如何工作？
