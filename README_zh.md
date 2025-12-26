@@ -1,5 +1,9 @@
 # 🤖 MM-Agent：面向真实世界数学建模问题的智能体
 
+<p align="center">
+   <img src="assets/logo.png" alt="MM-Agent Logo" width="30%">
+</p>
+
 > 📖 当前为中文版本。 [Click here for English version](./README.md)
 
 ## 📰 新闻

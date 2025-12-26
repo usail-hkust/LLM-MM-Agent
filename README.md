@@ -1,5 +1,9 @@
 # 🤖 MM Agent: LLMs as Agents for Real-world Mathematical Modeling Problems
 
+<p align="center">
+   <img src="assets/logo.png" alt="MM-Agent Logo" width="30%">
+</p>
+
 > 📖 This is the English version of the README. [点击查看中文版](./README_zh.md)
 
 ## 📰 News
