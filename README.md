@@ -1,55 +1,46 @@
-# 🤖 MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems
+# 🤖 MM Agent: LLMs as Agents for Real-world Mathematical Modeling Problems
 
 > 📖 This is the English version of the README. [点击查看中文版](./README_zh.md)
 
-
-
 ## 📰 News
-1. **2025-10**
+1. **2025-12**
+   🔥 **Upcoming Update**: We will soon release the latest upgraded version of the demo (bilingual). Please **Star** 🌟 our repository! We will issue service accounts based on the Star list (due to limited server capacity).
+2. **2025-10**
    🚀 **MM-Agent assisted two undergraduate teams in winning the Finalist Award** (Top 2.0% among 27,456 teams) in **MCM/ICM 2025**, demonstrating its practical effectiveness as a *modeling copilot*.
    🔗  [Demo](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
- 2. **2025-09**
-🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **NeurIPS 2025**!
-📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
- 3. **2025-07**
-🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **AI4MATH Workshop at ICML 2025**!
-📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
-
-
+3. **2025-09**
+   🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **NeurIPS 2025**!
+   📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
+4. **2025-07**
+   🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **AI4MATH Workshop at ICML 2025**!
+   📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
 
 ## 📖 Overview
 
 We propose a **Mathematical Modeling Agent** that simulates the real-world human process of mathematical modeling. This agent follows a complete problem-solving pipeline:
-
-<p align="center">
-   <img src="figs/Overview.png" alt="MM-Agent Overview" width="80%">
-</p>
-
-
-
 
 1. **Problem Analysis**
 2. **Mathematical Modeling**
 3. **Computational Solving**
 4. **Solution Reporting**
 
-
 Our paper is available at [arXiv](https://arxiv.org/abs/2505.14148).
 
+## 🎥 Demo Video
+
+<video src="assets/demo.mp4" controls="controls" width="100%"></video>
+
+> 💡 Note: If the video above does not play, you can [download the raw file](assets/demo.mp4) to watch.
+
+## 🖼️ Framework Overview
+
+<div align="center">
+   <img src="figs/Overview.pdf" alt="MM Agent Framework Overview" width="700px"/>
+</div>
+
+
+
 ---
-
-
-## 🆚 Traditional vs LLM-powered Mathematical Modeling
-
-A well-defined mathematical problem, where an agent solves a well-defined problem to obtain a solution.  An open-ended mathematical modeling problem, where given an abstract application scenario or phenomenon, the agent first needs to formulate the mathematical problem before solving it and providing an end-to-end solution.
-
-<p align="center">
-   <img src="figs/difference.png" alt="Traditional vs LLM-powered Mathematical Modeling" width="80%">
-</p>
-
-<p align="center">
-   <b>Figure 1:</b> Traditional well-defined mathematics problem vs LLM-powered open-ended mathematical modeling problem.<br>
-</p>
 
 ## 🔬 How Does the Mathematical Modeling Agent Work?
 
@@ -157,34 +148,3 @@ Source code is licensed under the **\[CC BY-NC]**.
    url={https://arxiv.org/abs/2505.14148}  
 }
 ```
-
-
-## Misc
-
-😝 If you like this project, don't forget to give it a ⭐!
-
-<div align="center">
-
-[![Stargazers repo roster for @usail-hkust/LLM-MM-Agent](https://reporoster.com/stars/usail-hkust/LLM-MM-Agent)](https://github.com/usail-hkust/LLM-MM-Agent/stargazers)
-
-[![Forkers repo roster for @usail-hkust/LLM-MM-Agent](https://reporoster.com/forks/usail-hkust/LLM-MM-Agent)](https://github.com/usail-hkust/LLM-MM-Agent/network/members)
-
-[![Star History Chart](https://api.star-history.com/svg?repos=usail-hkust/LLM-MM-Agent&type=Date)](https://star-history.com/#usail-hkust/LLM-MM-Agent&Date)
-
-</div>
-
-
----
-
-If you have any questions, feel free to reach out to the project maintainers:
-
-- **Project Leader:** [@luckyfan-cs](https://github.com/luckyfan-cs)  
-- **Demo Development Lead:** [@canchengliu](https://github.com/canchengliu)
-
-You're welcome to open an issue; we are happy to help!
-
-
-
-
-
-

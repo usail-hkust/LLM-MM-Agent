@@ -2,6 +2,19 @@
 
 > 📖 当前为中文版本。 [Click here for English version](./README.md)
 
+## 📰 新闻
+1. **2025-12**
+   🔥 **即将更新**：我们将很快发布最新升级版演示（双语）。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号。
+2. **2025-10**
+   🚀 **MM-Agent 辅助两支本科生团队在 MCM/ICM 2025 中获得 Finalist 奖**（27,456 支队伍中的前 2.0%），证明了其作为*建模副驾驶*的实际效果。
+   🔗  [演示地址](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
+3. **2025-09**
+   🎉 我们的论文 *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* 已被 **NeurIPS 2025** 录用！
+   📄 [arXiv 论文](https://arxiv.org/abs/2505.14148)
+4. **2025-07**
+   🎉 我们的论文 *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* 已被 **ICML 2025 AI4MATH Workshop** 录用！
+   📄 [arXiv 论文](https://arxiv.org/abs/2505.14148)
+
 ## 📖 简介
 
 我们提出了一个**数学建模智能体（Mathematical Modeling Agent，简称 MM-Agent）**，模拟人类在解决真实世界数学建模问题时的完整工作流程。该智能体遵循以下四个步骤：
@@ -12,6 +25,12 @@
 4. **结果汇报**
 
 我们的论文已在 [arXiv](https://arxiv.org/abs/2505.14148) 发布。
+
+## 🎥 演示视频
+
+<video src="assets/demo.mp4" controls="controls" width="100%"></video>
+
+> 💡 提示：如果上方视频无法播放，您可以[点击此处下载原始文件](assets/demo.mp4)观看。
 
 ---
 
