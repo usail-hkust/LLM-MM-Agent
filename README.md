@@ -161,6 +161,11 @@ pip install -r requirements.txt
 
 ---
 
+## 🤝 Contact & Community
+
+Join our WeChat group for updates and service support!
+<img src="assets/wechat_group.jpg" width="30%">
+
 ## 📜 License
 
 Source code is licensed under the **\[CC BY-NC]**.

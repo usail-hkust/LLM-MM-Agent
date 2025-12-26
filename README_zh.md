@@ -157,6 +157,11 @@ pip install -r requirements.txt
 
 ---
 
+## 🤝 联系与社区
+
+欢迎加入我们的微信群获取最新动态和服务支持！
+<img src="assets/wechat_group.jpg" width="30%">
+
 ## 📜 许可协议
 
 源代码遵循 **\[CC BY-NC]** 许可协议。
