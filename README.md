@@ -28,9 +28,9 @@ Our paper is available at [arXiv](https://arxiv.org/abs/2505.14148).
 
 ## 🎥 Demo Video
 
-<video src="assets/demo.mp4" controls="controls" width="100%"></video>
+[**▶️ Watch the Demo Video**](assets/demo.mp4)
 
-> 💡 Note: If the video above does not play, you can [download the raw file](assets/demo.mp4) to watch.
+> 💡 Note: Click the link above to watch the demo on GitHub.
 
 ## 🖼️ Framework Overview
 

@@ -28,9 +28,9 @@
 
 ## 🎥 演示视频
 
-<video src="assets/demo.mp4" controls="controls" width="100%"></video>
+[**▶️ 观看演示视频**](assets/demo.mp4)
 
-> 💡 提示：如果上方视频无法播放，您可以[点击此处下载原始文件](assets/demo.mp4)观看。
+> 💡 提示：点击上方链接可在 GitHub 上直接观看演示。
 
 ---
 
