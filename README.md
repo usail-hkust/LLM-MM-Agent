@@ -7,7 +7,8 @@
 > 📖 This is the English version of the README. [点击查看中文版](./README_zh.md)
 
 ## 📰 News
-1. **✨ DSLIGHTING: 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant**
+1. **2026.1**
+   ✨ **DSLIGHTING: 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant**
    🌟 支持完整的数据科学工作流，数学建模场景专用优化 / Supports complete data science workflow with specialized optimization for mathematical modeling scenarios
    👉 访问 / Visit: [https://github.com/usail-hkust/dslighting](https://github.com/usail-hkust/dslighting)
 2. **2025-12**
