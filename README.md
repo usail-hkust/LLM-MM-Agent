@@ -190,23 +190,13 @@ Source code is licensed under the **\[CC BY-NC]**.
 
 ## ⭐ Star History
 
-<div align="center">
-
-<p>
-  <a href="https://github.com/usail-hkust/dslighting/stargazers"><img src="https://api.star-history.com/svg?repos=usail-hkust/dslighting&type=Date&theme=dark" alt="Stargazers"/></a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/usail-hkust/dslighting/network/members"><img src="https://api.star-history.com/svg?repos=usail-hkust/dslighting&type=Fork&theme=dark" alt="Forkers"/></a>
-</p>
-
-<a href="https://www.star-history.com/#usail-hkust/dslighting&type=timeline&legend=top-left">
+<a href="https://www.star-history.com/#usail-hkust/LLM-MM-Agent&type=timeline&legend=top-left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=usail-hkust/dslighting&type=timeline&theme=dark&legend=top-left" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=usail-hkust/dslighting&type=timeline&legend=top-left" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=usail-hkust/dslighting&type=timeline&legend=top-left" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=usail-hkust/LLM-MM-Agent&type=timeline&theme=dark&legend=top-left" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=usail-hkust/LLM-MM-Agent&type=timeline&legend=top-left" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=usail-hkust/LLM-MM-Agent&type=timeline&legend=top-left" />
   </picture>
 </a>
-
-</div>
 
 ---
 
