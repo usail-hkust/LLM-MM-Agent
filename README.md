@@ -19,6 +19,11 @@
 4. **2025-07**
    🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **AI4MATH Workshop at ICML 2025**!
    📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
+5. **✨ DSLIGHTING: 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant**
+   🌟 支持完整的数据科学工作流，数学建模场景专用优化 / Supports complete data science workflow with specialized optimization for mathematical modeling scenarios
+   👉 访问 / Visit: [https://github.com/usail-hkust/dslighting](https://github.com/usail-hkust/dslighting)
+
+---
 
 ## 📖 Overview
 
@@ -169,6 +174,17 @@ Join our WeChat group for updates and service support!
 ## 📜 License
 
 Source code is licensed under the **\[CC BY-NC]**.
+
+---
+
+## 🌟 更多精彩项目 / More Exciting Projects
+
+如果您觉得本项目对您有帮助，欢迎关注我们的更多工作！/ If you find this project helpful, feel free to explore more of our work:
+
+- 🔥 **DSLIGHTING** - 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant
+  [Check it out →](https://github.com/usail-hkust/dslighting)
+
+⭐ 如果您喜欢这个项目，请给我们一个 Star！/ If you like this project, please give us a Star!
 
 
 ## 📚 References
