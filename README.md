@@ -7,21 +7,21 @@
 > 📖 This is the English version of the README. [点击查看中文版](./README_zh.md)
 
 ## 📰 News
-1. **2025-12**
-   🔥 **Upcoming Update**: We will soon release the latest upgraded version of the demo. Please **Star** 🌟 our repository! We will issue service accounts based on the Star list (due to limited server capacity) to help everyone better prepare for the MCM/ICM contest.
-   (即将更新：我们将很快发布最新升级版演示。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号，帮助大家更好的备战美赛。)
-2. **2025-10**
-   🚀 **MM-Agent assisted two undergraduate teams in winning the Finalist Award** (Top 2.0% among 27,456 teams) in **MCM/ICM 2025**, demonstrating its practical effectiveness as a *modeling copilot*.
-   🔗  [Demo](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
-3. **2025-09**
-   🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **NeurIPS 2025**!
-   📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
-4. **2025-07**
-   🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **AI4MATH Workshop at ICML 2025**!
-   📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
-5. **✨ DSLIGHTING: 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant**
+1. **✨ DSLIGHTING: 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant**
    🌟 支持完整的数据科学工作流，数学建模场景专用优化 / Supports complete data science workflow with specialized optimization for mathematical modeling scenarios
    👉 访问 / Visit: [https://github.com/usail-hkust/dslighting](https://github.com/usail-hkust/dslighting)
+2. **2025-12**
+   🔥 **Upcoming Update**: We will soon release the latest upgraded version of the demo. Please **Star** 🌟 our repository! We will issue service accounts based on the Star list (due to limited server capacity) to help everyone better prepare for the MCM/ICM contest.
+   (即将更新：我们将很快发布最新升级版演示。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号，帮助大家更好的备战美赛。)
+3. **2025-10**
+   🚀 **MM-Agent assisted two undergraduate teams in winning the Finalist Award** (Top 2.0% among 27,456 teams) in **MCM/ICM 2025**, demonstrating its practical effectiveness as a *modeling copilot*.
+   🔗  [Demo](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
+4. **2025-09**
+   🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **NeurIPS 2025**!
+   📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
+5. **2025-07**
+   🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **AI4MATH Workshop at ICML 2025**!
+   📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
 
 ---
 
