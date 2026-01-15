@@ -1,10 +1,41 @@
-# 🤖 MM Agent: LLMs as Agents for Real-world Mathematical Modeling Problems
+# MM Agent: LLMs as Agents for Real-world Mathematical Modeling Problems
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-412991?style=flat-square&logo=openai&logoColor=white)](https://openai.com/)
+[![License](https://img.shields.io/badge/License-CC__BY--NC--4.0-blue?style=flat-square)](LICENSE)
+[![NeurIPS](https://img.shields.io/badge/NeurIPS-2025-B31B1B?style=flat-square&logo=neurips&logoColor=white)](https://neurips.cc/)
+
+<p align="center">
+  <a href="#-quick-start"><img src="https://img.shields.io/badge/🚀-Quick_Start-green?style=for-the-badge" alt="Quick Start"></a>
+  &nbsp;&nbsp;
+  <a href="#-core-features"><img src="https://img.shields.io/badge/⚡-Core_Features-blue?style=for-the-badge" alt="Core Features"></a>
+  &nbsp;&nbsp;
+  <a href="https://arxiv.org/abs/2505.14148"><img src="https://img.shields.io/badge/📄-Paper-orange?style=for-the-badge" alt="Paper"></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/usail-hkust/LLM-MM-Agent/stargazers"><img src="https://img.shields.io/github/stars/usail-hkust/LLM-MM-Agent?style=for-the-badge" alt="Stars"></a>
+  &nbsp;&nbsp;
+  <img src="https://komarev.com/ghpvc/?username=usail-hkust&repo=LLM-MM-Agent&style=for-the-badge" alt="Profile views">
+</p>
+
+[English](README.md) · [中文版](README_zh.md)
+
+---
 
 <p align="center">
    <img src="assets/logo.png" alt="MM-Agent Logo" width="30%">
 </p>
 
-> 📖 This is the English version of the README. [点击查看中文版](./README_zh.md)
+<div align="center">
+
+🎯 **Mathematical Modeling Agent** &nbsp;•&nbsp; 📊 **Automated Problem Solving**<br>
+🤖 **Intelligent Code Generation** &nbsp;•&nbsp; 📈 **End-to-End Workflow**
+
+📄 [NeurIPS 2025 Paper](https://arxiv.org/abs/2505.14148) &nbsp;•&nbsp [💬 Join WeChat Group](#-contact--community) &nbsp;•&nbsp [⭐ Star Us](https://github.com/usail-hkust/LLM-MM-Agent/stargazers)
+
+</div>
+
+---
 
 ## 📰 News
 1. **2026-1**
@@ -28,14 +59,9 @@
 
 ## 📖 Overview
 
-We propose a **Mathematical Modeling Agent** that simulates the real-world human process of mathematical modeling. This agent follows a complete problem-solving pipeline:
+We propose **MM-Agent**, a mathematical modeling system that simulates the real-world human process of solving mathematical problems. Inspired by expert workflows, our agent systematically analyzes unstructured problem descriptions, formulates structured mathematical models, derives solutions through autonomous code generation, and generates comprehensive analytical reports.
 
-1. **Problem Analysis**
-2. **Mathematical Modeling**
-3. **Computational Solving**
-4. **Solution Reporting**
-
-Our paper is available at [arXiv](https://arxiv.org/abs/2505.14148).
+Our paper has been accepted by **NeurIPS 2025** and is available on [arXiv](https://arxiv.org/abs/2505.14148).
 
 ## 🎥 Demo Video
 
@@ -43,7 +69,26 @@ Our paper is available at [arXiv](https://arxiv.org/abs/2505.14148).
 
 > 💡 Note: Click the link above to watch the demo on GitHub.
 
-## 🚀 Core Features Walkthrough
+## ⚡ Core Features
+
+### 🎯 End-to-End Mathematical Modeling Workflow
+
+MM-Agent simulates the complete human process of mathematical modeling:
+
+1. **🧠 Problem Analysis** - Understand problem background, objectives, and constraints
+2. **📐 Mathematical Modeling** - Formulate mathematical models with appropriate assumptions
+3. **🧮 Computational Solving** - Implement algorithms and optimization techniques
+4. **📝 Solution Reporting** - Generate structured reports with clear interpretations
+
+### 🚀 Core Capabilities
+
+- **Automated Model Selection** - Intelligently selects appropriate mathematical models
+- **Interactive Data Analysis** - Execute complex analysis with visualizations
+- **Intelligent Code Generation** - Auto-generate and iteratively improve code
+- **Professional Paper Writing** - Generate academic-quality reports automatically
+- **Project Management** - Track and manage multiple modeling projects efficiently
+
+## 🎥 Demo Walkthrough
 
 ### 1. Project Creation
 Initialize your modeling workspace effortlessly.
@@ -79,30 +124,42 @@ Track and manage multiple modeling projects efficiently.
 
 ---
 
-## 🔬 How Does the Mathematical Modeling Agent Work?
+## 🔬 Technical Details
 
-The agent simulates a real-world mathematical modeling workflow through the following structured stages:
+### How MM-Agent Works
+
+The agent simulates a real-world mathematical modeling workflow through four structured stages:
 
 1. **🧠 Problem Analysis**
-   Understands the background, objectives, data availability, and constraints of the problem.
+   - Understands problem background, objectives, data availability, and constraints
+   - Decomposes complex problems into manageable subtasks
 
 2. **📐 Mathematical Modeling**
-   Translates real-world problems into mathematical models using appropriate assumptions, formulations, and modeling techniques.
+   - Translates real-world problems into mathematical models
+   - Uses appropriate assumptions, formulations, and modeling techniques
+   - Retrieves suitable methods from the Hierarchical Mathematical Modeling Library (HMML)
 
 3. **🧮 Computational Solving**
-   Implements algorithms, simulations, or optimization techniques to solve the models, often involving numerical computation.
+   - Implements algorithms, simulations, and optimization techniques
+   - Autonomously generates and iteratively improves code using MLE-Solver
+   - Ensures efficient and accurate execution
 
 4. **📝 Solution Reporting**
-   Summarizes the full modeling process, interprets results, and generates a clear, structured report.
+   - Summarizes the full modeling process
+   - Interprets results and generates clear, structured reports
 
-We propose MM-Agent, an end-to-end solution for open-ended real-world modeling problems. Inspired by expert workflows, MM-Agent systematically analyzes unstructured problem descriptions, formulates structured mathematical models, derives solutions, and generates analytical reports.
-Among these stages, the modeling step poses the greatest challenge, as it requires abstracting complex scenarios into mathematically coherent formulations grounded in both problem context and solution feasibility. To address this, we introduce the Hierarchical Mathematical Modeling Library (HMML): a tri-level knowledge hierarchy encompassing domains, subdomains, and method nodes. HMML encodes 98 high-level modeling schemas that enable both problem-aware and solution-aware retrieval of modeling strategies, supporting abstraction and method selection.  Specifically, MM-Agent first analyzes the problem and decomposes it into subtasks. It then retrieves suitable methods from HMML and refines its modeling plans via an actor-critic mechanism. To solve the models, the agent autonomously generates and iteratively improves code using the MLE-Solver for efficient, accurate execution. Finally, it compiles a structured report summarizing the modeling approach, experimental results, and key insights.
+### Key Innovation: HMML
+
+**Hierarchical Mathematical Modeling Library (HMML)** - A tri-level knowledge hierarchy encompassing:
+- **Domains** - High-level modeling categories
+- **Subdomains** - Specialized modeling areas
+- **Method Nodes** - 98 high-level modeling schemas
+
+HMML enables both problem-aware and solution-aware retrieval of modeling strategies, supporting abstraction and method selection through an actor-critic mechanism.
 
 ---
 ## 🌐 Demo
 Our demo is available at [Hugging Face Spaces](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent).
-
----
 
 ## 👾 Currently Supported Models
 
@@ -111,7 +168,7 @@ Our demo is available at [Hugging Face Spaces](https://huggingface.co/spaces/Mat
 
 ---
 
-## ▶️ Quick Start
+## 🚀 Quick Start
 
 ### 🔧 Running the Agent
 
@@ -169,23 +226,38 @@ pip install -r requirements.txt
 
 ## 🤝 Contact & Community
 
-Join our WeChat group for updates and service support!
+<div align="center">
+
+**Join our WeChat group for updates and service support!**
+
 <img src="assets/wechat_group.jpg" width="30%">
 
-## 📜 License
+For questions and discussions, welcome to:
+- 💬 WeChat Group: Scan the QR code above
+- 📧 Email: [Contact Us](mailto:contact@mm-agent.ai)
+- ⭐ Star us on GitHub and stay tuned!
 
-Source code is licensed under the **\[CC BY-NC]**.
+</div>
 
 ---
 
-## 🌟 更多精彩项目 / More Exciting Projects
+## 📜 License
 
-如果您觉得本项目对您有帮助，欢迎关注我们的更多工作！/ If you find this project helpful, feel free to explore more of our work:
+Source code is licensed under the **[CC BY-NC 4.0](LICENSE)**.
 
-- 🔥 **DSLIGHTING** - 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant
-  [Check it out →](https://github.com/usail-hkust/dslighting)
+---
 
-⭐ 如果您喜欢这个项目，请给我们一个 Star！/ If you like this project, please give us a Star!
+## 🌟 More Exciting Projects
+
+<div align="center">
+
+If you find this project helpful, feel free to explore more of our work!
+
+🔥 **[DSLIGHTING](https://github.com/usail-hkust/dslighting)** - End-to-End Data Science Intelligent Assistant
+
+**More Projects:** [usail-hkust](https://github.com/usail-hkust)
+
+</div>
 
 ---
 
