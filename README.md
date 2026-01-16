@@ -230,7 +230,7 @@ pip install -r requirements.txt
 
 **Join our WeChat group for updates and service support!**
 
-<img src="assets/wechat_group.jpg" width="30%">
+<img src="assets/wechat_group.jpg?v=20250116" width="30%">
 
 For questions and discussions, welcome to:
 - 💬 WeChat Group: Scan the QR code above
