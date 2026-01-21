@@ -14,12 +14,17 @@ class LLM:
         self.logger = logger
         self.user_id = user_id
         self.api_key = key
+        
+        # Set API base URL based on model or use default OpenAI base
         if self.model_name in ['deepseek-chat', 'deepseek-reasoner']:
             self.api_base = os.getenv('DEEPSEEK_API_BASE')
         elif self.model_name in ['qwen2.5-72b-instruct']:
             self.api_base = "https://dashscope.aliyuncs.com/compatible-mode/v1"
         elif self.model_name in ['gpt-4o', 'gpt-4']:
             self.api_base = os.getenv('OPENAI_API_BASE')
+        else:
+            # Default to OpenAI API base for other models
+            self.api_base = os.getenv('OPENAI_API_BASE', 'https://api.openai.com/v1')
         
         if not self.api_key:
             raise ValueError('API key not found in environment variables')
@@ -37,60 +42,23 @@ class LLM:
 
     def generate(self, prompt, system='', usage=True):
         try:
-            if self.model_name in ['deepseek-chat', 'deepseek-reasoner']:
-                response = self.client.chat.completions.create(
-                    model=self.model_name,
-                    messages=[
-                        {'role': 'system', 'content': system},
-                        {'role': 'user', 'content': prompt}
-                    ],
-                    temperature=0.7,
-                    top_p=1.0,
-                    frequency_penalty=0.0,
-                    presence_penalty=0.0
-                )
-                answer = response.choices[0].message.content
-                usage = {
-                    'completion_tokens': response.usage.completion_tokens,
-                    'prompt_tokens': response.usage.prompt_tokens,
-                    'total_tokens': response.usage.total_tokens
-                }
-            elif self.model_name in ['gpt-4o', 'gpt-4']:
-                response = self.client.chat.completions.create(
-                    model=self.model_name,
-                    messages=[
-                        {'role': 'system', 'content': system},
-                        {'role': 'user', 'content': prompt}
-                    ],
-                    temperature=0.7,
-                    top_p=1.0,
-                    frequency_penalty=0.0,
-                    presence_penalty=0.0
-                )
-                answer = response.choices[0].message.content
-                usage = {
-                    'completion_tokens': response.usage.completion_tokens,
-                    'prompt_tokens': response.usage.prompt_tokens,
-                    'total_tokens': response.usage.total_tokens
-                }
-            elif self.model_name in ['qwen2.5-72b-instruct']:
-                response = self.client.chat.completions.create(
-                    model=self.model_name,
-                    messages=[
-                        {'role': 'system', 'content': system},
-                        {'role': 'user', 'content': prompt}
-                    ],
-                    temperature=0.7,
-                    top_p=1.0,
-                    frequency_penalty=0.0,
-                    presence_penalty=0.0
-                )
-                answer = response.choices[0].message.content
-                usage = {
-                    'completion_tokens': response.usage.completion_tokens,
-                    'prompt_tokens': response.usage.prompt_tokens,
-                    'total_tokens': response.usage.total_tokens
-                }
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[
+                    {'role': 'system', 'content': system},
+                    {'role': 'user', 'content': prompt}
+                ],
+                temperature=0.7,
+                top_p=1.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0
+            )
+            answer = response.choices[0].message.content
+            usage = {
+                'completion_tokens': response.usage.completion_tokens,
+                'prompt_tokens': response.usage.prompt_tokens,
+                'total_tokens': response.usage.total_tokens
+            }
             if self.logger:
                 self.logger.info(f"[LLM] UserID: {self.user_id} Key: {self.api_key}, Model: {self.model_name}, Usage: {usage}")
             if usage:
