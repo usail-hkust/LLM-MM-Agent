@@ -23,7 +23,9 @@ class LLM:
         elif self.model_name in ['gpt-4o', 'gpt-4']:
             self.api_base = os.getenv('OPENAI_API_BASE')
         else:
-            # Default to OpenAI API base for other models
+            # Default to OpenAI API base for other OpenAI-compatible models
+            # For models requiring different API endpoints, use the reset() method
+            # to override api_base after initialization
             self.api_base = os.getenv('OPENAI_API_BASE', 'https://api.openai.com/v1')
         
         if not self.api_key:
