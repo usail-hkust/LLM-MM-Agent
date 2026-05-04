@@ -40,25 +40,30 @@
 ---
 
 ## 📰 News
-1. **2026-01**
+1. **2026-05**
+   🎉 **Open-source Demo Released / 开源 Demo 已发布**
+   🚀 Deploy the upgraded mathematical modeling platform locally with the open-source demo, including the Next.js frontend, FastAPI backend, BYOK configuration, and E2B sandbox support.
+   欢迎使用开源 Demo 本地部署升级后的数学建模平台，包含 Next.js 前端、FastAPI 后端、BYOK 配置和 E2B 沙盒支持。
+   👉 使用说明 / Usage: [demo/README.md](./demo/README.md)
+2. **2026-01**
    🎉 **Latest Demo Now Live / 最新演示已上线**
    🚀 Experience our upgraded mathematical modeling platform! Join our WeChat group to get your invitation code for early access.
    欢迎加入我们的微信群获取邀请码，抢先体验升级后的数学建模平台！
-   👉 访问 / ~~Visit: [http://cdn.mmagent.top/](http://cdn.mmagent.top/)~~ （Our demo link is no longer available due to server expiration, and we may open-source the demo soon.）
-2. **2026-01**
+   👉 访问 / ~~Visit: [http://cdn.mmagent.top/](http://cdn.mmagent.top/)~~ （Our demo link is no longer available due to server expiration. See the open-source demo above.）
+3. **2026-01**
    ✨ **DSLIGHTING: 全流程数据科学智能助手 / End-to-End Data Science Intelligent Assistant**
    🌟 支持完整的数据科学工作流，数学建模场景专用优化 / Supports complete data science workflow with specialized optimization for mathematical modeling scenarios
    👉 访问 / Visit: [https://github.com/usail-hkust/dslighting](https://github.com/usail-hkust/dslighting)
-3. **2025-12**
+4. **2025-12**
    🔥 **Upcoming Update**: We will soon release the latest upgraded version of the demo. Please **Star** 🌟 our repository! We will issue service accounts based on the Star list (due to limited server capacity) to help everyone better prepare for the MCM/ICM contest.
    (即将更新：我们将很快发布最新升级版演示。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号，帮助大家更好的备战美赛。)
-4. **2025-10**
+5. **2025-10**
    🚀 **MM-Agent assisted two undergraduate teams in winning the Finalist Award** (Top 2.0% among 27,456 teams) in **MCM/ICM 2025**, demonstrating its practical effectiveness as a *modeling copilot*.
    🔗 [在线体验 / Online Demo](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
-5. **2025-09**
+6. **2025-09**
    🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **NeurIPS 2025**!
    📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
-6. **2025-07**
+7. **2025-07**
    🎉 Our paper *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* has been accepted to the **AI4MATH Workshop at ICML 2025**!
    📄 [Read the paper on arXiv](https://arxiv.org/abs/2505.14148)
 
@@ -167,6 +172,18 @@ HMML enables both problem-aware and solution-aware retrieval of modeling strateg
 ---
 ## 🌐 Demo
 Our demo is available at [Hugging Face Spaces](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent).
+
+## 🧪 Open-source Demo
+
+We provide a local-deployable open-source demo in [`demo/`](./demo/README.md). It keeps the production-style web service structure, including the Next.js frontend, FastAPI backend, local SQLite storage, BYOK configuration, and one-command startup scripts.
+
+Run it with:
+
+```bash
+bash demo/scripts/run.sh
+```
+
+This package removes committed secrets, public deployment hosts, invite-code scripts, backdoor account scripts, Redis/object-storage runtime state, logs, and historical outputs, while keeping the full local workflow structure.
 
 ## 👾 Currently Supported Models
 

@@ -1,0 +1,154 @@
+%美赛模板：正文部分
+
+%模板中需要使用Xelatex编译两次，所以可以反复尝试编译
+\documentclass[12pt]{article}  % 官方要求字号不小于 12 号，此处选择 12 号字体
+% \linespread{1.1} %可选：设置行间距1.1倍
+% 本模板不需要填写年份，以当前电脑时间自动生成
+% 请在以下的方括号中填写队伍控制号
+\usepackage[1234567]{easymcm}  % 载入 EasyMCM 模板文件
+\problem{Y}  % 请在此处填写题号
+% \usepackage{mathptmx}  % 这是 Times 字体，中规中矩 
+\usepackage{palatino}  % mathpazo 这palatino是 COMAP 官方杂志采用的更好看的 Palatino 字体，可替代以上的 mathptmx 宏包
+\usepackage{pdfpages}
+\usepackage{longtable} %长表格包
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{listings} %代码排版包
+\usepackage{paralist} %压缩列表环境包（紧凑列表）
+\usepackage{makecell} %表格换行包
+\usepackage{multirow} %表格排版包
+%\usepackage{fourier} %使用花里胡哨符号的宏包
+%------------------------------------------代码排版包(待研究)
+%    \usepackage{minted}  %代码排版包
+%    \usepackage{caption} %浮动体包
+%    \usepackage{xcolor}
+\usepackage{matlab-prettifier} %MATLAB代码排版包
+\usepackage{tcolorbox} %美丽盒子包
+%    \tcbuselibrary{skins}
+%    \tcbuselibrary{minted}
+\tcbuselibrary{listings,skins,breakable,xparse}
+%    \usemintedstyle{lovelace} %特定代码配色环境
+%\tcbuselibrary{breakable}
+
+
+\usepackage{pgfornament} %花样装饰包(待研究)
+\usepackage[ruled,linesnumbered]{algorithm2e} %伪代码排版包
+\usepackage{tikz} %绘图包
+\usetikzlibrary{arrows.meta, positioning, calc}
+\usepackage{wrapfig} %图文环绕包
+\usepackage{float} %精确位置控制包
+\usepackage{lettrine} %首字下沉包
+%-------------------------------------------交叉引用实现包
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\graphicspath{{img/}}          % 此处{img/}为相对路径，注意加上“/”
+\let\itemize\compactitem{}
+\let\enditemize\endcompactitem{}
+%-------------------------------------------附录代码排版盒子（起）
+ \tcbset{%
+ mylist/.style = {%
+  colframe = gray,
+  colback = white,
+  coltitle = red!50!yellow!3!white,
+  colbacktitle = white,
+  listing only,
+  attach boxed title to top center = {yshift = -\tcboxedtitleheight/2},
+  enhanced,
+  drop fuzzy shadow, % shadow around listings
+  left = 6.5mm, % distance between left rule and line number 
+  breakable, % enable listing box to break by page
+  %enhanced jigsaw, % box not being closed when broken by page
+  fonttitle=\small\bfseries\color{black}, % customise font of listing title
+  before skip=20pt plus 2pt, % vertical space between listings and text
+  after skip=20pt plus 2pt,
+ },
+ example/.style 2 args = {%
+  mylist,
+  title = {Listing \thetcbcounter: #1},
+  label = {#2},
+ },
+ }
+ \newtcblisting[auto counter, number within = section, list inside = mcode]{matlab}[3][]{%
+  listing options = {%
+   style = Matlab-editor,
+   numbers = left,
+   numberstyle = \footnotesize\color{darkgray}\fontfamily{pcr}\selectfont,
+   basicstyle = \footnotesize\fontfamily{pcr}\selectfont,
+   breaklines = true,  % 启用自动换行
+   breakatwhitespace = true,  % 在空格处换行
+   postbreak = \mbox{\textcolor{gray}{$\hookrightarrow$}\space}  % 换行指示符
+  },
+  overlay = {\begin{tcbclipinterior}\fill[blue!15!white] (frame.south west) rectangle ([xshift=5.3mm]frame.north west);\end{tcbclipinterior}},
+  example = {#2}{#3}, #1,
+ }
+ 
+ % Python代码盒子定义 - 与MATLAB配色统一
+ \newtcblisting[auto counter, number within = section, list inside = pcode]{python}[3][]{%
+  listing options = {%
+   language = Python,
+   numbers = left,
+   numberstyle = \footnotesize\color{darkgray}\fontfamily{pcr}\selectfont,
+   basicstyle = \footnotesize\fontfamily{pcr}\selectfont,
+   keywordstyle = \color{darkblue}\bfseries,
+   commentstyle = \color{darkgreen},
+   stringstyle = \color{red!60},
+   showstringspaces = false,
+   emphstyle = \color{orange!60},
+   emph = {self, cls, True, False, None},
+   breaklines = true,  % 启用自动换行
+   breakatwhitespace = true,  % 在空格处换行
+   postbreak = \mbox{\textcolor{gray}{$\hookrightarrow$}\space}  % 换行指示符
+  },
+  overlay = {\begin{tcbclipinterior}\fill[blue!15!white] (frame.south west) rectangle ([xshift=5.3mm]frame.north west);\end{tcbclipinterior}},
+  example = {#2}{#3}, #1,
+ }
+%-------------------------------------------附录代码排版盒子（止）
+
+\input{new_command.tex} %载入新命令
+%\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}} %
+\title{Input Your Article Title Here \\ if it is too Long}  % 标题
+
+% 如需要修改题头（默认为 MCM/ICM），请使用以下命令（此处修改为 MCM）
+%\renewcommand{\contest}{MCM}
+
+
+%--------------------------------------------文档开始
+ \begin{document}
+
+% 此处填写摘要内容
+\begin{abstract}
+
+    This is abstract.This section should describe what problem the paper solves, what methods are applied, what results are obtained and summarize them.
+
+    This is the second line abstract.And if you look carefully you can see that the spacing within and between paragraphs is different, which facilitates our reading in paragraphs.
+
+    This is \textbf{the} \textsf{special} \texttt{special} \textsl{special} \textit{special} fonts in abstract.
+
+    \vspace{5pt}  %mm	毫米	1 mm = 2.845 pt   pt 点	1 pt = 0.351 mm
+    \textbf{Keywords: Fighting Wildfires; Multi-Objective Optimization; Poisson Distribution; Tabu Search Algorithm; Sensitivity Analysis}
+
+\end{abstract}
+\maketitle  % 生成 Summary Sheet
+
+\tableofcontents  % 生成目录
+\input{part_1_pre}
+\input{part_2_model}
+\input{part_3_conclusion}
+
+% 插入两页空白，用于conclusion和references之间的间隔
+%将这两页替换成你们的学术海报或者彩页
+\clearpage
+\thispagestyle{empty}
+\mbox{}
+\clearpage
+\thispagestyle{empty}
+\mbox{}
+
+%\input{Memo.tex}
+\newpage
+\input{part_4_Appendix}
+
+
+
+\end{document}

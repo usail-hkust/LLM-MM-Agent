@@ -7,15 +7,19 @@
 > 📖 当前为中文版本。 [Click here for English version](./README.md)
 
 ## 📰 新闻
-1. **2025-12**
+1. **2026-05**
+   🎉 **开源 Demo 已发布 / Open-source Demo Released**
+   🚀 可在本地一键部署升级后的数学建模平台，包含 Next.js 前端、FastAPI 后端、BYOK 配置和 E2B 沙盒支持。
+   👉 使用说明 / Usage: [demo/README.md](./demo/README.md)
+2. **2025-12**
    🔥 **即将更新**：我们将很快发布最新升级版演示。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号，帮助大家更好的备战美赛。
-2. **2025-10**
+3. **2025-10**
    🚀 **MM-Agent 辅助两支本科生团队在 MCM/ICM 2025 中获得 Finalist 奖**（27,456 支队伍中的前 2.0%），证明了其作为*建模副驾驶*的实际效果。
    🔗  [演示地址](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
-3. **2025-09**
+4. **2025-09**
    🎉 我们的论文 *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* 已被 **NeurIPS 2025** 录用！
    📄 [arXiv 论文](https://arxiv.org/abs/2505.14148)
-4. **2025-07**
+5. **2025-07**
    🎉 我们的论文 *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* 已被 **ICML 2025 AI4MATH Workshop** 录用！
    📄 [arXiv 论文](https://arxiv.org/abs/2505.14148)
 
@@ -91,6 +95,18 @@ HMML 支持基于问题内容和解法目标的双向检索，帮助智能体完
 ## 🌐 在线演示
 
 演示地址：[Hugging Face Spaces](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
+
+## 🧪 开源 Demo
+
+仓库中的 [`demo/`](./demo/README.md) 是可本地自部署的开源版，保留了接近线上结构的完整 Web 服务，包括 Next.js 前端、FastAPI 后端、本地 SQLite 存储、BYOK 配置和一键启动脚本。
+
+运行方式：
+
+```bash
+bash demo/scripts/run.sh
+```
+
+这个版本保留了完整的本地工作流结构，同时移除了提交到仓库的密钥、公网地址、邀请码脚本、后门建号脚本、Redis/对象存储运行态数据、日志和历史产出。
 
 ---
 

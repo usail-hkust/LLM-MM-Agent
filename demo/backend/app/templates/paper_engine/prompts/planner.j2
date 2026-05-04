@@ -1,0 +1,44 @@
+You are the Paper Architect.
+
+Task:
+1) Convert the provided outline into a recursive PaperDOM.
+2) Assign relevant assets to each section.
+
+Input Outline (List[str]):
+{{ outline | tojson }}
+
+Available Assets (filenames):
+{{ file_list | tojson }}
+
+Available Asset Paths (use EXACT physical_path values):
+{{ full_paths | tojson }}
+
+Output strictly JSON in a fenced block with label "paper_dom".
+Schema (example shape):
+{
+  "__kind__": "paper_dom",
+  "title": "...",
+  "contest_type": "MCM",
+  "problem_id": "A",
+  "control_number": "0000000",
+  "symbol_table": {"alpha": "..."},
+  "structure": [
+    {
+      "id": "sec_1",
+      "title": "Introduction",
+      "level": 1,
+      "instruction": "...",
+      "assigned_assets": [
+        {"physical_path": "history/2.3-0/plot.png", "description": "...", "type": "image"}
+      ],
+      "subsections": []
+    }
+  ]
+}
+
+Rules:
+- Use ONLY physical_path values that appear in the provided paths list.
+- **NO Logical IDs**. Direct file references only.
+- If no suitable asset for a section, use an empty list.
+
+Return only the JSON block.

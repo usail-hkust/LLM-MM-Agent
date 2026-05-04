@@ -1,0 +1,205 @@
+% 参考文献，此处以 MLA 引用格式为例
+%行文到此处，按照美赛的惯例是需要插入1-2张海报的，但是我这里并没有制作海报的模板
+%这是因为LaTeX生成的学术海报一般较大，为A1或者A0,且内容密度较高，如果贸然将版面改为A4,会导致内容过密,影响阅读体验
+%因此，我在main.tex中插入了两页空白用于替代彩页的位置
+%当彩页在其他软件中绘制完毕后，导出pdf格式将这两页进行替换即可
+%并不是LaTeX不能生成a4格式的海报或者彩页
+%只是对于非常自由的排版，其他专业的海报软件如ps，显然能更好的满足需求，所谓“适合的才是最好的”
+%------------------------------------------------------------------------------------
+\clearpage   %另起一页继续写。这时,你最好使用“\clearpage” 
+\begin{thebibliography}{99}
+    \bibitem{1} GLOBAL FOREST WHATCH OF AUSTRALIA \\https://www.globalforestwatch.org/topics/fires/?topic=fires\#footer
+	\bibitem{2} HU Teng, LIU Zhanjun, LIU Yang, et al. 3D reconnaissance path planning of multiple UAVs. Journal of Systems Engineering and Electronics, 2019, 41(7): 1551-1559.
+	\bibitem{3} BASBOUS B. 2D UAV path planning with radar threatening areas using simulated an-nealing algorithm for event detection. The 2018 International Conference on Artificial Intelligence and Data Processing. Malatya, Turkey: IEEE,2018: 1-7.
+	\bibitem{4} WANG W F, WU Y C, ZHANG X. Research of the unit decomposing traversal method based on grid method of the mobile robot. Techniques of Automation and Applications, 2013, 32(11): 34-38.
+	\bibitem{5} XU Jian, ZHOU Deyun, HUANG He. Multi UAV path planning based on improved ge-netic algorithm. Aeronautical Computing Technique, 2009, 39(4): 43-46.
+\end{thebibliography}
+\iffalse
+\begin{center}
+    The following codes are written by \textbf{MATLAB}, which is to collect the data.
+\appendix
+\end{center}
+\fi
+\appendix
+%\tcblistof[\section]{mcode}{List of MATLAB code}
+\section{First Section}
+\begin{matlab}{My 1st Code(Written by MATLAB)}{code:labels}
+% a comment
+clear all, clc
+% a comment
+x = [1.00; 1.00; 1.00];
+beta0 = [1 1 1];
+modelfun = 'y ~ k*x^2+b'
+mdl = fitnlm(tb,modelfun,beta0)
+% a comment
+plotResiduals(md1,'fitt111111111111111ed')
+%this is so so so so so so so so so so so so so so so so so so so so so so so so so so so long code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%1
+111
+\end{matlab}
+\begin{matlab}{My 2st Code}{code:llabel}
+disp('hello')
+\end{matlab}
+\begin{matlab}{My 2st Code}{code:labell}
+    disp('hello')
+\end{matlab}
+
+\section{Python Code Examples}
+
+\subsection{Basic Python Example}
+\begin{python}{Simple Python Function}{code:python1}
+# Python code example
+def fibonacci(n):
+    """Calculate Fibonacci sequence"""
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+# Test function
+for i in range(10):
+    print(f"Fibonacci({i}) = {fibonacci(i)}")
+\end{python}
+
+\subsection{Data Analysis with Python}
+\begin{python}{Data Processing Example}{code:python2}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create sample data
+data = {
+    'x': np.linspace(0, 10, 100),
+    'y': np.sin(np.linspace(0, 10, 100))
+}
+df = pd.DataFrame(data)
+
+# Data analysis and visualization
+print("Data statistics:")
+print(df.describe())
+
+plt.figure(figsize=(10, 6))
+plt.plot(df['x'], df['y'], 'b-', linewidth=2)
+plt.title('Sine Function Plot')
+plt.xlabel('x')
+plt.ylabel('sin(x)')
+plt.grid(True)
+plt.show()
+\end{python}
+
+\section{Use of AI}
+
+This section documents the interactions between the author and AI assistant during the development of this MCM/ICM paper. The conversations are presented in a question-and-answer format to demonstrate how AI was utilized for various aspects of the research.
+
+\subsection{Model Development Assistance}
+
+\begin{tcolorbox}[title=\textbf{Question: How to optimize the UAV path planning algorithm?}, colback=blue!2!white, colframe=blue!30!black, fonttitle=\bfseries]
+I'm working on a UAV path planning algorithm for wildfire monitoring. The current approach uses a grid-based method, but I'm encountering issues with computational efficiency when scaling to larger areas. What optimization techniques would you recommend?
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=\textbf{AI Response}, colback=green!2!white, colframe=green!30!black, fonttitle=\bfseries]
+For UAV path planning optimization in wildfire scenarios, consider these approaches:
+
+1. \textbf{Hybrid algorithms}: Combine genetic algorithms with simulated annealing for better convergence
+2. \textbf{Multi-resolution grids}: Use coarse grids for initial planning, then refine locally
+3. \textbf{Dynamic programming}: Implement Dijkstra's algorithm with priority queues
+4. \textbf{Parallel processing}: Divide the search space for concurrent computation
+
+The key is to balance exploration and exploitation while considering real-time constraints.
+\end{tcolorbox}
+
+\subsection{Data Processing and Analysis}
+
+\begin{tcolorbox}[title=\textbf{Question: Data preprocessing for wildfire detection}, colback=blue!2!white, colframe=blue!30!black, fonttitle=\bfseries]
+I have satellite imagery data for wildfire detection, but there's significant noise and missing values. What preprocessing steps should I implement before applying machine learning models?
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=\textbf{AI Response}, colback=green!2!white, colframe=green!30!black, fonttitle=\bfseries]
+Recommended preprocessing pipeline:
+
+\begin{itemize}
+\item \textbf{Missing data}: Use interpolation or k-nearest neighbors imputation
+\item \textbf{Noise reduction}: Apply Gaussian or median filters
+\item \textbf{Normalization}: Scale pixel values to [0,1] range
+\item \textbf{Feature extraction}: Consider texture features, thermal gradients
+\item \textbf{Data augmentation}: Rotate, flip, and scale images for robustness
+\end{itemize}
+
+Also, implement cross-validation to ensure model generalization.
+\end{tcolorbox}
+
+\subsection{Mathematical Formulation Assistance}
+
+\begin{tcolorbox}[title=\textbf{Question: Mathematical modeling for fire spread prediction}, colback=blue!2!white, colframe=blue!30!black, fonttitle=\bfseries]
+I need to develop a mathematical model for wildfire spread prediction. What are the key factors and equations I should consider?
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=\textbf{AI Response}, colback=green!2!white, colframe=green!30!black, fonttitle=\bfseries]
+Key factors for wildfire spread modeling:
+
+\begin{align*}
+\frac{\partial T}{\partial t} &= \alpha \nabla^2 T + Q \quad \text{(Heat equation with source)}\\
+\frac{\partial m}{\partial t} &= -k m \quad \text{(Fuel consumption)}
+\end{align*}
+
+Where:
+\begin{itemize}
+\item $T$: Temperature distribution
+\item $m$: Fuel mass density
+\item $\alpha$: Thermal diffusivity
+\item $Q$: Heat generation rate
+\item $k$: Combustion rate constant
+\end{itemize}
+
+Consider wind effects, topography, and fuel moisture content as additional parameters.
+\end{tcolorbox}
+
+\subsection{Code Implementation Support}
+
+\begin{tcolorbox}[title=\textbf{Question: MATLAB implementation for data visualization}, colback=blue!2!white, colframe=blue!30!black, fonttitle=\bfseries]
+I need to create effective visualizations for wildfire data analysis in MATLAB. What plotting techniques and functions would you recommend?
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=\textbf{AI Response}, colback=green!2!white, colframe=green!30!black, fonttitle=\bfseries]
+For wildfire data visualization in MATLAB:
+
+\begin{lstlisting}[language=Matlab]
+% Heat map for temperature distribution
+heatmap(temperatureData, 'Colormap', hot);
+
+% Time series for fire progression
+plot(time, fireArea, 'r-', 'LineWidth', 2);
+
+% 3D surface for terrain and fire spread
+surf(X, Y, elevation, fireIntensity);
+
+% Geographic plotting with mapping toolbox
+geoplot(lat, lon, 'r-', 'LineWidth', 2);
+\end{lstlisting}
+
+Use subplot for multi-panel figures and customize colormaps for better interpretation.
+\end{tcolorbox}
+
+\subsection{Conclusion on AI Usage}
+
+The AI assistant provided valuable support in algorithm optimization, data preprocessing guidance, mathematical formulation, and code implementation. All final decisions, analysis, and interpretations were made by the human author, with AI serving as a collaborative tool for brainstorming and technical guidance.

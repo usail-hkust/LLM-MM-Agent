@@ -1,0 +1,291 @@
+% 正文开始
+% Chapter 1: Introduction
+\section{Introduction}
+\subsection{Problem Background}
+
+%---------------------------------子图的排版与语法
+\begin{figure}[htbp]
+    \centering    
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{test_1.jpg}
+        \captionsetup{justification=centering}
+        \caption{Subfigure Name1Long LongLong LongLong LongLong Long (left)}
+    \end{subfigure}
+    \hspace{0.02\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{test_2.jpg}
+        \captionsetup{justification=centering}
+        \caption{Subfigure Name2(right)}
+    \end{subfigure}
+	\caption{Figure Name} % 图片标题 
+\end{figure}
+\vspace{-1cm} %下文向下空-1cm
+\subsection{Restatement of the Problem}
+
+%----------------------------------无序列表的排版与语法
+\begin{itemize}
+    \setlength{\parsep}{0ex} %段落间距
+    \setlength{\topsep}{2ex} %列表到上下文的垂直距离
+    \setlength{\itemsep}{1ex} %条目间距
+    \item Problem 1: 
+    \item Problem 2:
+    \item Problem 3: 
+    \item Problem 4\&5: 
+\end{itemize}
+
+%---------------------------------大图的排版与语法
+\begin{figure}[H]  %h此处，t页顶，b页底，p独立一页，浮动体出现的位置
+    \centering  %图表居中
+    \includegraphics[width=.80\textwidth]{cat.jpeg} %图片的名称或者路径之中有空格会出问题 
+    \captionsetup{justification=centering} %超长标题时仍然保持居中
+    \caption{Flow Chart of this Paper's Research It is Long Long Long Long \protect\\Long Long Long Long Long Long} % 图片标题 
+\end{figure}
+\vspace{-1cm}
+
+%--------------------------------假设部分较复杂的无序列表
+\section{Assumptions and Explanations}
+Considering \ldots
+\begin{enumerate}[\bfseries \textit{Assumption} 1:]
+	\item \textbf{We assume that \ldots}\\
+	\textbf{\textit{Explanation:}} \ldots
+	\item \textbf{We assume that \ldots}\\
+	\textbf{\textit{Explanation:}}\ldots
+	\item \textbf{We assume \ldots}\\
+	\textbf{\textit{Explanation:}}\ldots
+\end{enumerate}
+
+\section{Notations}
+Some important mathematical notations used in this paper are listed in \Cref{tb:notations}. 
+%上部对于table的处理使用了交叉引用可以实时更改序号
+\begin{table}[H]
+\begin{center}
+\caption{Notations used in this paper}\label{tb:notations}
+\begin{tabular}{c c c}
+\toprule[2pt] %三线表顶端线宽度
+\multicolumn{1}{m{1.5cm}}{\centering \textbf{Symbol}} %开始写表内容捏，其中{m{xxcm}}表示该列宽度
+&\multicolumn{1}{m{12.5cm}}{\centering\textbf{Description} }
+&\multicolumn{1}{m{1cm}}{\centering \textbf{Units}}\\
+\midrule
+$\lambda_i$& Meaning of the symbol&/ \\
+$y_i$& Meaning of the symbol&/\\
+$a_i$& Meaning of the symbol&/\\
+$\Delta R$&Meaning of the symbol&/ \\
+$R^*$ &Meaning of the symbol &/\\
+\bottomrule[2pt]
+\end{tabular}
+
+\begin{tablenotes}%等等，表格还有些说明！
+        \footnotesize
+        \item[*] *There are some variables that are not listed here and will be discussed in detail in each section. %此处加入注释*信息
+\end{tablenotes}
+\end{center}
+\end{table}
+\vspace{-1.2cm}%在\end{table}下加一行\vspace{-1cm} 其中-1的作用是缩短与下方文字距离的 切记！必须是负数
+
+\section{Model Preparation}
+\subsection{Data Overview}
+For a large amount of data, it is necessary to process and clean the data before building the model. So we first use the ismissing function to find the missing value and get the missing value in \Cref{tb:missing_data}:
+\begin{table}[H]%浮动体的htbp可以强制在原位显示，改参数为H
+  \begin{center}
+  \fontsize{12pt}{13.8}
+  \caption{Missing Data in Given Data} \label{tb:missing_data}
+  \resizebox{\textwidth}{!}
+  {\begin{tabular}{||l|l|c c c c|r|r||} %此处设置了不同类型的参数及线供参考
+  \toprule[2pt]
+  \multicolumn{1}{m{3cm}}{\centering \textbf{Missing1}} %大型表格需要好好斟酌每一列的宽度捏
+  &\multicolumn{1}{m{2cm}}{\centering \textbf{Missing2}}
+  &\multicolumn{1}{m{2cm}}{\centering \textbf{Missing3}}
+  &\multicolumn{1}{m{2cm}}{\centering \textbf{Missing4}}
+  &\multicolumn{1}{m{2cm}}{\centering \textbf{Missing5}}
+  &\multicolumn{1}{m{2cm}}{\centering \textbf{Missing6}}
+  &\multicolumn{1}{m{2cm}}{\centering \textbf{Missing7}}
+  &\multicolumn{1}{m{2cm}}{\centering \textbf{Missing8}}
+  \\ %m后面是列宽
+  \midrule
+  \multirow{3}*{\makecell[c]{Looooog\\Word}}%合并行操作,同时进行了合并行内的换行，{}内是合并的行数
+  &A&B&C&D&-&E&F \\
+  ~ &A&B&C&D&-&E&F   \\
+  ~ &A&B&C&D&-&E&F \\ 
+  Multicolumn&\multicolumn{7}{c}{These columns share common features} \\%合并列操作，{}内是合并的列数
+  \bottomrule[2pt]
+  \end{tabular}}
+  \end{center}
+\end{table}
+\vspace{-1cm}
+
+\subsubsection{Data Collection}
+And other data sources are shown in \Cref{tb:data_source}.
+
+\begin{table}[H]
+    \begin{center}
+    \caption{Data and Database Websites}\label{tb:data_source}
+    \resizebox{\textwidth}{!}
+    {\begin{tabular}{c c}
+    \toprule[2pt]
+    \multicolumn{1}{m{6.5cm}}{\centering \textbf{Database Names}}
+    &\multicolumn{1}{m{10cm}}{\centering \textbf{Database Websites} }\\ %m后面是列宽
+    \midrule
+    GDP of Each Country& https://ourworldindata.org/ \\
+    GDP of Some European Countries & https://data.worldbank.org/ \\
+    \multirow{2}*{Partial Sailing Parameters}& https://www.sailboat-cruising.com/\\ 
+    ~& https://sailboatdata.com/ \\
+    \bottomrule[2pt]
+    \end{tabular}}
+    \end{center}
+\end{table}
+\vspace{-1cm}
+
+\subsubsection{Data Screening}
+According to the data given, we \ldots
+\begin{figure}[htbp]
+    \centering    
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{catsquare.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Cute Cat(left)}
+    \end{subfigure}
+    \hspace{0.02\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{catsquare.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Cute Cat(right)}
+    \end{subfigure}
+	\caption{Data Screening}  
+\end{figure}
+\vspace{-1cm}
+
+This is a double-table.
+
+\begin{table}[H] %浮动体的htbp可以强制在原位显示，改参数为H
+    \begin{center}
+    \caption{Partial Monohull and Catamaran data}
+    \resizebox{\textwidth}{!}
+    {\begin{tabular}{c c c c c c}
+    \toprule[2pt]
+    \multicolumn{1}{m{4cm}}{\centering \textbf{AA}}
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{BB$/m$}}
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{CC/m$^3$}}
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{DD\\/m$^3$}}%此处如果DD过长可以使用\\换行
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{EE/m$^2$}}
+    &\multicolumn{1}{m{4cm}}{\centering \textbf{FF}}
+    \\ %m后面是列宽
+    \midrule
+    A&B&C&D&E&F \\
+    A&B&C&D&E&F\\
+    \bottomrule[2pt]
+    \toprule[2pt]
+    \multicolumn{1}{m{4cm}}{\centering \textbf{AA}}
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{BB$/m$}}
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{CC/m$^3$}}
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{DD\\/m$^3$}}%此处如果DD过长可以使用\\换行
+    &\multicolumn{1}{m{2cm}}{\centering \textbf{EE/m$^2$}}
+    &\multicolumn{1}{m{4cm}}{\centering \textbf{FF}}
+    \\ %m后面是列宽
+    \midrule
+    A&B&C&D&E&F \\
+    A&B&C&D&E&F\\
+    \bottomrule[2pt]
+    \end{tabular}}
+    \end{center}
+  \end{table}
+
+\subsection{Detailed Parameter Analysis}
+To provide a comprehensive analysis of the model parameters, we present a detailed table that may span multiple pages if necessary.
+
+\begin{center}
+\begin{longtable}{@{\extracolsep{\fill}}ccccc@{}}
+\caption{Detailed Parameter Analysis for Model Optimization}\label{tb:parameter_analysis}\\
+\toprule[2pt]
+\multicolumn{1}{m{2.5cm}}{\centering \textbf{Parameter}} & \multicolumn{1}{m{2cm}}{\centering \textbf{Type}} & \multicolumn{1}{m{3cm}}{\centering \textbf{Range}} & \multicolumn{1}{m{2.5cm}}{\centering \textbf{Default Value}} & \multicolumn{1}{m{2cm}}{\centering \textbf{Sensitivity}} \\
+\midrule
+\endfirsthead
+
+\multicolumn{5}{c}{{\tablename\ \thetable{} -- Continued from previous page}}\\
+\toprule[2pt]
+\multicolumn{1}{m{2.5cm}}{\centering \textbf{Parameter}} & \multicolumn{1}{m{2cm}}{\centering \textbf{Type}} & \multicolumn{1}{m{3cm}}{\centering \textbf{Range}} & \multicolumn{1}{m{2.5cm}}{\centering \textbf{Default Value}} & \multicolumn{1}{m{2cm}}{\centering \textbf{Sensitivity}} \\
+\midrule
+\endhead
+
+\bottomrule[2pt]
+\multicolumn{5}{r}{{Continued on next page}}\\
+\endfoot
+
+\bottomrule[2pt]
+\endlastfoot
+
+$\alpha$ & Continuous & [0, 1] & 0.5 & High \\
+$\beta$ & Discrete & {1, 2, 3} & 2 & Medium \\
+$\gamma$ & Continuous & [0.1, 0.9] & 0.7 & Low \\
+$\delta$ & Continuous & [0.001, 0.1] & 0.01 & High \\
+$\epsilon$ & Continuous & [0.0001, 0.1] & 0.001 & Medium \\
+$\zeta$ & Discrete & {10, 20, 50} & 20 & Low \\
+$\eta$ & Continuous & [0.05, 0.95] & 0.5 & High \\
+$\theta$ & Continuous & [0.1, 0.9] & 0.3 & Medium \\
+$\iota$ & Discrete & {5, 10, 15} & 10 & Low \\
+$\kappa$ & Continuous & [0.01, 0.5] & 0.1 & High \\
+$\lambda$ & Continuous & [0.001, 0.1] & 0.01 & Medium \\
+$\mu$ & Continuous & [0.1, 0.9] & 0.5 & Low \\
+$\nu$ & Continuous & [0.01, 0.5] & 0.1 & Medium \\
+$\xi$ & Discrete & {1, 2, 3} & 2 & Low \\
+$\pi$ & Continuous & [3.14, 3.15] & 3.1416 & High \\
+$\rho$ & Continuous & [0.8, 0.99] & 0.9 & Medium \\
+$\sigma$ & Continuous & [0.1, 1.0] & 0.5 & High \\
+$\tau$ & Continuous & [0.01, 0.1] & 0.05 & Medium \\
+$\upsilon$ & Discrete & {100, 200, 500} & 200 & Low \\
+$\phi$ & Continuous & [0.2, 0.8] & 0.5 & High \\
+$\chi$ & Continuous & [0.001, 0.1] & 0.01 & Medium \\
+$\psi$ & Discrete & {2, 4, 8} & 4 & Low \\
+$\omega$ & Continuous & [0.5, 2.0] & 1.0 & High \\
+$\alpha_1$ & Continuous & [0.1, 0.9] & 0.5 & High \\
+$\beta_1$ & Discrete & {2, 4, 6} & 4 & Medium \\
+$\gamma_1$ & Continuous & [0.2, 0.8] & 0.5 & Low \\
+$\delta_1$ & Continuous & [0.002, 0.02] & 0.01 & High \\
+$\epsilon_1$ & Continuous & [0.0002, 0.02] & 0.002 & Medium \\
+$\zeta_1$ & Discrete & {20, 40, 60} & 40 & Low \\
+$\eta_1$ & Continuous & [0.1, 0.9] & 0.5 & High \\
+$\theta_1$ & Continuous & [0.2, 0.8] & 0.5 & Medium \\
+$\iota_1$ & Discrete & {10, 20, 30} & 20 & Low \\
+$\kappa_1$ & Continuous & [0.02, 0.4] & 0.2 & High \\
+$\lambda_1$ & Continuous & [0.002, 0.02] & 0.01 & Medium \\
+$\mu_1$ & Continuous & [0.2, 0.8] & 0.5 & Low \\
+$\nu_1$ & Continuous & [0.02, 0.4] & 0.2 & Medium \\
+$\xi_1$ & Discrete & {2, 4, 6} & 4 & Low \\
+$\rho_1$ & Continuous & [0.85, 0.95] & 0.9 & Medium \\
+$\sigma_1$ & Continuous & [0.2, 0.8] & 0.5 & High \\
+$\tau_1$ & Continuous & [0.02, 0.08] & 0.05 & Medium \\
+$\upsilon_1$ & Discrete & {200, 400, 600} & 400 & Low \\
+$\phi_1$ & Continuous & [0.3, 0.7] & 0.5 & High \\
+$\chi_1$ & Continuous & [0.002, 0.02] & 0.01 & Medium \\
+$\psi_1$ & Discrete & {4, 8, 12} & 8 & Low \\
+$\omega_1$ & Continuous & [0.6, 1.8] & 1.2 & High \\
+$\alpha_2$ & Continuous & [0.15, 0.85] & 0.5 & High \\
+$\beta_2$ & Discrete & {3, 6, 9} & 6 & Medium \\
+$\gamma_2$ & Continuous & [0.25, 0.75] & 0.5 & Low \\
+$\delta_2$ & Continuous & [0.003, 0.03] & 0.015 & High \\
+$\epsilon_2$ & Continuous & [0.0003, 0.03] & 0.003 & Medium \\
+$\zeta_2$ & Discrete & {30, 60, 90} & 60 & Low \\
+$\eta_2$ & Continuous & [0.15, 0.85] & 0.5 & High \\
+$\theta_2$ & Continuous & [0.25, 0.75] & 0.5 & Medium \\
+$\iota_2$ & Discrete & {15, 30, 45} & 30 & Low \\
+$\kappa_2$ & Continuous & [0.03, 0.45] & 0.3 & High \\
+$\lambda_2$ & Continuous & [0.003, 0.03] & 0.015 & Medium \\
+$\mu_2$ & Continuous & [0.25, 0.75] & 0.5 & Low \\
+$\nu_2$ & Continuous & [0.03, 0.45] & 0.3 & Medium \\
+$\xi_2$ & Discrete & {3, 6, 9} & 6 & Low \\
+$\rho_2$ & Continuous & [0.82, 0.92] & 0.87 & Medium \\
+$\sigma_2$ & Continuous & [0.25, 0.75] & 0.5 & High \\
+$\tau_2$ & Continuous & [0.025, 0.075] & 0.05 & Medium \\
+$\upsilon_2$ & Discrete & {300, 600, 900} & 600 & Low \\
+$\phi_2$ & Continuous & [0.35, 0.65] & 0.5 & High \\
+$\chi_2$ & Continuous & [0.003, 0.03] & 0.015 & Medium \\
+$\psi_2$ & Discrete & {6, 12, 18} & 12 & Low \\
+$\omega_2$ & Continuous & [0.7, 1.6] & 1.4 & High \\
+\end{longtable}
+\end{center}
+\vspace{-3em}
+
+This comprehensive parameter analysis provides the foundation for our model optimization process. The table is designed to span multiple pages if needed, ensuring readability and accessibility of all parameter information.

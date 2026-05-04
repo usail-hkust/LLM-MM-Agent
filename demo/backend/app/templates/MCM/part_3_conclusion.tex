@@ -1,0 +1,126 @@
+\section{Conclusions and Interesting Information}
+\ldots
+\subsection{Useful and Meaningful Conclusions}
+\begin{itemize}
+    \setlength{\parsep}{0ex} %段落间距
+    \setlength{\topsep}{2ex} %列表到上下文的垂直距离
+    \setlength{\itemsep}{1ex} %条目间距
+    \item As we can see \ldots
+    \item As we can see\ldots
+    \item As we can see\ldots
+\end{itemize}
+
+\section{Sensitivity Analysis}
+\dots
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        \draw[-Latex] (0,0,0) -- (3,0,0) node[right] {$x$}; 
+        \draw[-Latex] (0,0,0) -- (0,3,0) node[above] {$y$}; 
+        \draw[-Latex] (0,0,0) -- (0,0,3) node[below left] {$z$}; 
+        \filldraw[fill=gray!30!white, thick] (0,0,2) -- (0,2,0) -- (2,0,0) -- (0,0,2); 
+        \draw[densely dashed] (0,0,0) -- (0,2,0); 
+        \draw[densely dashed] (0,0,0) -- (0,0,2); 
+        \draw[densely dashed] (0,0,0) -- (2,0,0); 
+        \node[above right] at (0,0,0) {$O$}; 
+    \end{tikzpicture}
+    \caption{Three-Dimensional Coordinate System with Triangular Plane}
+\label{fig:3d_coordinate}
+\end{figure}
+\vspace{-0.5cm}
+
+\subsection{Visual Analysis}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/cat.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Sensitivity Analysis of Parameter $\alpha$}
+    \end{subfigure}
+    \hspace{0.02\linewidth}
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/cat.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Sensitivity Analysis of Parameter $\beta$}
+    \end{subfigure}
+    \\[0.5cm]
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/cat.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Sensitivity Analysis of Parameter $\gamma$}
+    \end{subfigure}
+    \hspace{0.02\linewidth}
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/cat.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Sensitivity Analysis of Parameter $\delta$}
+    \end{subfigure}
+    \caption{Visualization of Sensitivity Analysis Results}
+\label{fig:sensitivity_analysis}
+\end{figure}
+\vspace{-0.5cm}
+Through the four subfigures above, we can clearly observe the sensitivity impact of different parameters on the model output. The top-left figure shows the effect of parameter $\alpha$ variation on the results, the top-right figure displays the sensitivity of parameter $\beta$, the bottom-left figure analyzes the role of parameter $\gamma$, and the bottom-right figure demonstrates the influence of parameter $\delta$.
+
+\begin{figure}[H] %[H]让图片在文章中的位置就是这段代码的位置
+	\centering
+		\begin{minipage}[t]{0.5\textwidth} %并排排列图片使用\minipage{}环境,而子图排列使用\subfigure{}环境
+			\centering
+			\includegraphics[width=0.9\textwidth]{catsquare.jpeg}
+            \captionsetup{justification=centering} \caption{Left Figure}
+		\end{minipage}%
+		\begin{minipage}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width = 0.9\textwidth]{catsquare.jpeg}
+			\captionsetup{justification=centering} \caption{Middle Figure}
+		\end{minipage}%
+    \vspace{-0.5cm}
+\end{figure}
+\section{Model Evaluation and Further Discussion}
+\subsection{Strengths}
+
+\subsection{Weaknesses \texorpdfstring{$\&$} FFurther Discussion}
+
+\section{Conclusion}
+The cites\upcite{1}\upcite{2}\upcite{3}\upcite{4}\upcite{5}
+
+% 使用wrapfig包进行图文混排-精确控制折行位置
+\begin{wrapfigure}[14]{r}{0.4\textwidth} % [12]表示图片占据12行高度，控制折行位置
+    \vspace{-1.5ex} % 调整图片上移，确保与文字上端对齐
+    \centering
+    \includegraphics[width=\linewidth]{img/catsquare.jpeg}
+    \caption{Additional Model Analysis}
+    \label{fig:additional_analysis}
+\end{wrapfigure}
+
+To further validate the model's performance, additional analysis was conducted using different datasets and testing scenarios. The results consistently show that the model maintains high accuracy and robustness across various conditions. The key findings from this extended validation include:
+
+\begin{itemize}
+    \item Cross-dataset validation accuracy: 94.8\%
+    \item Robustness to noise: 93.5\%
+    \item Scalability performance: 0.18 seconds for 10,000 samples
+    \item Memory efficiency: 256MB peak usage
+\end{itemize}
+
+As can be seen from the figure, the model demonstrates stable performance across different datasets, validating its generalization capability. The embedded figure on the right provides a visual representation of the validation results, complementing the quantitative metrics presented in the text.
+
+% 首字下沉效果段落，虽然一些杂志中会有首字下沉，但是在论文中需要谨慎使用，可以在彩页或海报中使用。所以此处仅作参考
+\lettrine[lines=2, lhang=0.33, loversize=0.2]{I}{n} addition to the quantitative metrics presented above, the qualitative analysis further confirms the model's practical applicability in real-world scenarios. The model's ability to maintain consistent performance across diverse datasets and environmental conditions demonstrates its robustness and reliability. This comprehensive evaluation not only validates the theoretical foundations of the approach but also highlights its potential for widespread adoption in various application domains. The combination of high accuracy, computational efficiency, and scalability makes this model a promising solution for addressing complex problems in the field.
+
+\par\noindent In this section, we present the author's personal reflections on the art of typesetting, highlighting the importance of typography in scientific communication.
+
+% 花体字体演示 - 仅保留Zapf Chancery
+\section*{Author's Words}
+\begin{quote}
+\centering
+\fontfamily{pzc}\fontsize{14}{16}\selectfont
+Typesetting is an art.\\[0.5ex]
+\hspace*{\fill}\textit{---Tianhao}
+\end{quote}
+
+

@@ -1,0 +1,250 @@
+%%
+%% EasyMCM: 一个简洁、易用的美赛模板
+%% Oringinal template (MCMthesis v5.0) by latexstudio, <latexstudio@hotmail.com>
+%% Redeveloped by youjiarui189 (xjtu-blacksmith), <yjr134@163.com>
+%% 目前由西安交大钱院学辅（@qyxf）负责，网址：https://qyxf.site/
+%%
+%% v5.00: 注释全部汉化（且添加了大量注释），并将格式改进为符合当前规范的版本
+%% v5.01: 正式改为独立宏包 EasyMCM，改为简洁、清晰、符合美赛规范的格式
+%% v5.02: 支持了 7 位控制号，改进了若干已知问题，并补充了一些非必需的内容
+%% v5.1 : 适配 2020 年 Summary sheet 样式，大幅优化代码，更加简明易用
+%% 
+%% 博客地址：http://www.cnblogs.com/xjtu-blacksmith/
+%% GitHub 发布页面：https://github.com/qyxf/easymcm/releases
+%%
+
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+\ProvidesPackage{easymcm}[2019/01/21 EasyMCM v5.1]
+\typeout{EasyMCM Package, version 5.1}
+
+% 基本宏包 
+\RequirePackage[a4paper,margin=2.5cm,bottom=1.5cm]{geometry}  % 页边距和纸张大小
+\RequirePackage{fancyhdr,fancybox}  % 设置页眉页脚
+\RequirePackage{ifthen}  % 逻辑结构
+\RequirePackage{lastpage}  % 生成"Page X of XX"
+\RequirePackage{paralist}  % 修改 itemize 各项间距
+\RequirePackage{indentfirst}  % 全文首行缩进
+\RequirePackage[toc,page,title,titletoc,header]{appendix}  % 附录定制
+
+% 数学公式
+\RequirePackage{amsfonts,amsmath,amssymb} % AMS-LaTeX 符号、公式
+
+% 定理环境声明
+% 事实上大部分论文中用不到，但仍保留以供使用
+\RequirePackage{mdframed}  % 用于添加带背景色的定理环境
+\newmdtheoremenv[backgroundcolor=grey,linewidth=2pt,leftline=true,rightline=false,topline=false,bottomline=false,innertopmargin=6pt,innerbottommargin=6pt,innerleftmargin=8pt,innerrightmargin=8pt]{Theorem}{Theorem}[section]
+\newmdtheoremenv[backgroundcolor=grey,linewidth=2pt,leftline=true,rightline=false,topline=false,bottomline=false,innertopmargin=6pt,innerbottommargin=6pt,innerleftmargin=8pt,innerrightmargin=8pt]{Lemma}[Theorem]{Lemma}
+\newmdtheoremenv[backgroundcolor=grey,linewidth=2pt,leftline=true,rightline=false,topline=false,bottomline=false,innertopmargin=6pt,innerbottommargin=6pt,innerleftmargin=8pt,innerrightmargin=8pt]{Corollary}[Theorem]{Corollary}
+\newmdtheoremenv[backgroundcolor=grey,linewidth=2pt,leftline=true,rightline=false,topline=false,bottomline=false,innertopmargin=6pt,innerbottommargin=6pt,innerleftmargin=8pt,innerrightmargin=8pt]{Proposition}[Theorem]{Proposition}
+\newmdtheoremenv[backgroundcolor=grey,linewidth=2pt,leftline=true,rightline=false,topline=false,bottomline=false,innertopmargin=6pt,innerbottommargin=6pt,innerleftmargin=8pt,innerrightmargin=8pt]{Definition}[Theorem]{Definition}
+\newmdtheoremenv[backgroundcolor=grey,linewidth=2pt,leftline=true,rightline=false,topline=false,bottomline=false,innertopmargin=6pt,innerbottommargin=6pt,innerleftmargin=8pt,innerrightmargin=8pt]{Example}[Theorem]{Example}
+
+% 目录
+\RequirePackage{titlesec,titletoc}  % 自定义目录样式
+\setcounter{tocdepth}{3}  % 目录显示到 subsubsection(3) 级别
+\RequirePackage[font=small]{caption}  % 使图表标题字号小一号
+\renewcommand\abstractname{Summary}  % 摘要标题
+
+% 表格相关
+\RequirePackage{longtable,multirow,array}  % 各种基本的表格宏包
+\RequirePackage{booktabs}  % 三线表宏包
+\RequirePackage{tabularx}
+
+% 字体相关
+\RequirePackage[T1]{fontenc}  % 开启拓展区正文字体
+\RequirePackage{url}  % 网址宏包，以下命令使得网址能自动换行
+\def\UrlBreaks{\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J
+\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V
+\do\W\do\X\do\Y\do\Z\do\[\do\\\do\]\do\^\do\_\do\`\do\a\do\b
+\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n
+\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z
+\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,
+\do\?\do\'\do+\do\=\do\#}
+
+% 基本参数
+\setlength{\headheight}{15pt}
+\newcommand{\MCM@control}{0000000}  % 队伍控制号，默认为 0000000
+\DeclareOption*{\edef\MCM@control{\CurrentOption}}  % 宏包选项接收控制号
+\ProcessOptions
+\newcommand{\control}{\MCM@control}
+\newcommand{\team}{Team \#\ \MCM@control}
+\newcommand{\contest}{MCM/ICM}
+
+% 书签，插图和交叉引用的设置
+\RequirePackage{graphicx}  % 插图
+\RequirePackage{flafter}  % 引用该宏包可避免图片在引用它的正文之前出现
+\RequirePackage{float} 
+\RequirePackage{subcaption}
+\RequirePackage{ifpdf}  % 判断是否在运行 pdftex
+\ifpdf%
+\RequirePackage{epstopdf}  % pdftex 不能使用 eps 图片，用该宏包转成 pdf 后使用
+\DeclareGraphicsExtensions{.pdf,.jpg,.jpeg,.png}    % 允许的图片类型
+\RequirePackage[
+    linkcolor=black,  % 消除链接色彩
+    citecolor=black,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black]{hyperref}
+\else\DeclareGraphicsExtensions{.eps,.ps}  % 不需要转换 eps 图片格式
+\ifxetex\RequirePackage[
+    xetex,  % 运行 xetex
+    pdfstartview=FitH,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black]{hyperref}
+\else\RequirePackage[
+    dvipdfm,  % 运行其他编译引擎（如 luatex）
+    pdfstartview=FitH,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black]{hyperref}
+\fi\fi
+
+% 以下设置使得一页上最多有六个浮动对象（图、表）
+% 且顶部最多三个，底部最多三个
+% 可自行修改参数
+\setcounter{totalnumber}{6}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+
+% 很多人发现缺省的浮动参数过于严格了
+% 下面的命令
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.65}
+\renewcommand{\floatpagefraction}{0.60}
+% 将浮动参数重新设置为更宽松的值。
+% ---选自《LaTeX2e插图指南》
+
+% 图表标题名称
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\setlength{\belowcaptionskip}{4pt}
+\setlength{\abovecaptionskip}{4pt}  % 设置 caption 与上下文间距
+
+% 以下定义了自动识别的图表文件夹
+% 若使用这些名字命名文件夹
+% 则引用图片路径时只需填文件名即可
+\graphicspath{{./}{./img/}{./fig/}{./image/}{./figure/}{./picture/}}
+
+% 页眉页脚设置
+\lhead{\small \team}
+\chead{}
+\rhead{\small Page \thepage\ of \pageref{LastPage}}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+% 信件/备忘录环境
+\newcounter{prefix}  % 创建隐藏前缀计数器，避免对 letter 环境编号
+\renewcommand{\theHsection}{\theprefix.\thesection}  % 针对 hyperref
+\newenvironment{letter}[1]{\refstepcounter{section}\addtocounter{section}{-1}\section*{#1}\addcontentsline{toc}{section}{#1}}{\stepcounter{prefix}}
+
+% 快乐 etoolbox
+\RequirePackage{etoolbox}  % 减轻正文复杂度
+\AtBeginEnvironment{abstract}{\setlength\parskip{1ex}}  % 摘要中增加段距
+\AtBeginEnvironment{thebibliography}{
+    \refstepcounter{section}
+    \addcontentsline{toc}{section}{References}}  % 参考文献附加链接
+\BeforeBeginEnvironment{subappendices}{
+    \clearpage
+    \setcounter{secnumdepth}{-1}}  % 附录附加链接
+\BeforeBeginEnvironment{letter}{\clearpage}  % 信件环境附加换页
+
+% 代码相关
+\RequirePackage{listings}
+\RequirePackage{color,xcolor}
+\definecolor{grey}{rgb}{0.85,0.85,0.85}
+\definecolor{darkgreen}{rgb}{0,0.3,0}
+\definecolor{darkblue}{rgb}{0,0,0.3}
+\def\lstbasicfont{\fontfamily{pcr}\selectfont\footnotesize}
+\lstset{%
+   % numbers=left,
+   % numberstyle=\small,%
+    showstringspaces=false,
+    showspaces=false,%
+    tabsize=4,%
+    breakatwhitespace=ture,
+    %frame=lines,%
+    basicstyle={\footnotesize\lstbasicfont},%
+    keywordstyle=\color{darkblue}\bfseries,%
+    identifierstyle=,%
+    commentstyle=\color{darkgreen},%\itshape,%
+    stringstyle=\color{black}%
+}
+\lstloadlanguages{C,C++,Java,Matlab,Mathematica}
+
+
+% COMAP 要求的 Summary Sheet 标题（2020）
+% 注意每年比赛时有可能有小调整
+% 请以官网发布的样式为准自行做小的修改！
+\newcommand{\@problem}[1]{}
+\newcommand{\problem}[1]{\gdef\@problem{#1}}
+\newcommand{\makesheet}{ %生成sheet头命令的定义
+    \null%
+    \vspace*{-5pc}%
+    \begin{center}
+    \begingroup
+    \setlength{\parindent}{0pt}
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+        \textbf{Problem Chosen}\\
+        \LARGE\@problem
+        \end{minipage}%
+        \begin{minipage}[t]{0.34\linewidth}
+        \centering
+        \bfseries\the\year\\\contest\\{Summary Sheet}
+        \end{minipage}%
+        \begin{minipage}[t]{0.33\linewidth}
+        \centering
+        \textbf{Team Control Number}\\
+        \LARGE\MCM@control\\[1.8pc]
+    \end{minipage}\par
+    \vskip1ex
+    \rule{\linewidth}{1.5pt}\par
+    \endgroup
+    \vskip 10pt%
+    \end{center}}
+
+% abstract 环境的设置
+\newbox\@abstract   % 将摘要创建为盒子
+\setbox\@abstract\hbox{}  % 盒子置空
+\long\def\abstract{\bgroup\global\setbox\@abstract\vbox\bgroup\hsize\textwidth}
+\def\endabstract{\egroup\egroup}
+\def\make@abstract{
+    \vskip -10pt\par
+    {\centering\Large\bfseries\@title\vskip1ex}\par  % 插入论文标题，字号可自己修改
+    {\centering\bfseries\abstractname\vskip1.5ex}\par  %摘要标题
+    \noindent\usebox\@abstract\par  % 摘要正文
+    \vskip 10pt}  % 底部留空，若不需要可删去
+
+% Summary Sheet 生成
+\def\@maketitle{
+	\makesheet%
+	\make@abstract
+    \pagenumbering{gobble}
+    \pagestyle{empty}
+    \newpage
+    \pagenumbering{arabic}
+    \setcounter{page}{2}}%1
+
+% 目录生成
+\renewcommand\tableofcontents{%
+    \centerline{\normalfont\Large\bfseries\contentsname%
+    \@mkboth{%
+    \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \vskip 3ex%
+    \@starttoc{toc}%
+    \thispagestyle{fancy}
+    \clearpage
+    \pagestyle{fancy}
+    \setlength\parskip{1ex}}  % 调整段间距
+
+\endinput

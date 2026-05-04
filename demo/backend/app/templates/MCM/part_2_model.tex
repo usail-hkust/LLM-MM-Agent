@@ -1,0 +1,164 @@
+\section{Layout of Formulas, Graphs and Tables}
+\subsection{Layout of Formulas}
+We can use the following codes to describe a part of calculation.\footnote{This section demonstrates the aesthetic formatting environment for mathematical expressions} 
+
+\textbf{Examples of Theorem Environment Usage:}
+\begin{Definition}
+    A covariance matrix is a symmetric matrix that describes the covariance relationships between multiple random variables. For $n$ random variables $X_1, X_2, \ldots, X_n$, the covariance matrix $\Sigma$ is defined as:
+    \[
+    \Sigma_{ij} = \text{Cov}(X_i, X_j)
+    \]
+\end{Definition}
+
+\begin{Theorem}[Matrix Eigenvalue Decomposition]
+    For any real symmetric matrix $A$, there exists an orthogonal matrix $Q$ and a diagonal matrix $\Lambda$ such that:
+    \[
+    A = Q\Lambda Q^T
+    \]
+    where the diagonal elements of $\Lambda$ are the eigenvalues of $A$, and the column vectors of $Q$ are the eigenvectors of $A$.
+\end{Theorem}
+
+\begin{Example}[Covariance Matrix Calculation Example]
+    Consider two random variables $X$ and $Y$ with sample data:
+    \[
+    X = [1, 2, 3, 4], \quad Y = [2, 4, 6, 8]
+    \]
+    The covariance matrix is then:
+    \[
+    \Sigma = \begin{bmatrix}
+    \text{Var}(X) & \text{Cov}(X,Y) \\
+    \text{Cov}(Y,X) & \text{Var}(Y)
+    \end{bmatrix}
+    \]
+\end{Example}
+
+\begin{enumerate}[\bfseries 1.]
+    \setlength{\parsep}{0ex} %段落间距
+    \setlength{\topsep}{0ex} %列表到上下文的垂直距离
+    \setlength{\itemsep}{0ex} %条目间距
+    \item A complex line of formulas\dots
+    \begin{align}\label{eq:cov}
+        C=\left[ \begin{matrix}
+	    Cov\left( x_1,x_1 \right)&		Cov\left( x_1,x_2 \right)\\
+	    Cov\left( x_2,x_1 \right)&		Cov\left( x_2,x_2 \right)\\
+        \end{matrix} \right] ,\ \text{where\ }Cov\left( x_2,x_1 \right) =\frac{\sum_{i=1}^M{\left( x_{1}^{i}-\overline{x_1} \right) ^2}}{M-1}
+    \end{align}
+    A description of the formula\dots
+   
+    \item A complex line of formulas\dots
+    \begin{align}
+      \left[ \begin{array}{c}
+	    y_{1}^{i}\\
+	    y_{2}^{i}\\
+	    \vdots\\
+	    y_{k}^{i}\\
+        \end{array} \right] =\left[ \begin{matrix}
+	    u_{1}^{T}&		\cdots&		\left( x_{1}^{i},x_{2}^{i},x_{3}^{i},\cdots ,x_{N}^{i} \right) ^T\\
+	    u_{2}^{T}&		\cdots&		\left( x_{1}^{i},x_{2}^{i},x_{3}^{i}\cdots ,x_{N}^{i} \right) ^T\\
+	    \vdots   &		\cdots&		\vdots\\
+	    u_{k}^{T}&		\cdots&		\left( x_{1}^{i},x_{2}^{i},x_{3}^{i},\cdots ,x_{N}^{i} \right) ^T\\
+        \end{matrix} \right] 
+    \end{align}    
+    A description of the formula\dots
+    \item A complex line of formulas\dots
+    \begin{align}
+        Con=\frac{\lambda _i}{\sum_{k=1}^p{\lambda _k}},\ \left( i=1,2,\cdots ,p \right) \\
+        Con^*=\frac{\sum_{k=1}^i{\lambda _k}}{\sum_{k=1}^p{\lambda _k}},\ \left( i=1,2,\cdots ,p \right) 
+    \end{align}
+\end{enumerate}
+
+\[\frac{\text{d}x}{\text{d}y}=\frac{\text{d}x}{\text{d}z}\frac{\text{d}z}{\text{d}y}\]
+
+A description of the formula\dots.The \Cref{eq:cov} is important.
+\subsection{Layout of Figures}
+\begin{figure}[H]
+    \centering   %使用subfigure环境排版三张图也是可以的,但是需要调整图宽度 
+    \begin{subfigure}[t]{0.31\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{catsquare.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Subfigure1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{catsquare.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Subfigure2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{catsquare.jpeg}
+        \captionsetup{justification=centering}
+        \caption{Subfigure3}
+    \end{subfigure}
+	\caption{Subfigures} % 图片标题 
+\end{figure}
+\vspace{-0.5cm}
+
+\begin{figure}[H] %[H]让图片在文章中的位置就是这段代码的位置
+	\centering
+		\begin{minipage}[t]{0.32\textwidth} %并排排列图片使用\minipage{}环境,而子图排列使用\subfigure{}环境
+			\centering
+			\includegraphics[width=0.9\textwidth]{catsquare.jpeg}
+            \captionsetup{justification=centering} \caption{Left Figure}
+		\end{minipage}%
+		\begin{minipage}[t]{0.32\textwidth}
+			\centering
+			\includegraphics[width = 0.9\textwidth]{catsquare.jpeg}
+			\captionsetup{justification=centering} \caption{Middle Figure}
+		\end{minipage}%
+        \begin{minipage}[t]{0.32\textwidth}
+			\centering
+			\includegraphics[width = 0.9\textwidth]{catsquare.jpeg}
+			\captionsetup{justification=centering} \caption{Right Figure}
+		\end{minipage}%
+    \vspace{-0.5cm}
+\end{figure}
+
+
+If we use complex algorithms, we need to illustrate them using pseudo-code.
+
+\begin{algorithm}[H]
+    \caption{CAT Fusion Pseudo-code}
+    \SetAlgoLined
+    \KwIn{BIG CATS}
+    \KwOut{LITTLE CATS}
+    \emph{\textbf{Definition}: $J=Inf$  \& Create $a_{right}$ matrix to record the values of $a_1$, $a_2$ and $a_3$}\;
+    \For{$a_3 = 0 to 1(step = 0.01)$}{
+        Define the objective function:
+        $f\left( a_1 \right) =\min \left\{ \sum{\left( y-\left( a_1x_1+\left( 1-a_3-a_2 \right) x_2+a_3x_3 \right) \right)}^2 \right\} $\;
+        Using function fmincon, solve the optimization problem\;
+        When the solution is complete, return the resulting $a_1$ and $f(a_1)$\;
+        \If{$f(a_1) < J$}{
+            $J<--f(a_1)$\;
+            Update $a_{right}$ matrix\;
+        } 
+    }
+  \end{algorithm}
+\vspace{-0.5cm}
+
+\subsection{Layout of Special Tables}
+\begin{table}[H]
+    \begin{center}
+    \caption{Cute Creatures}\label{table:11}
+    \resizebox{\textwidth}{!}
+    {\begin{tabular}{c c c c}
+    \toprule[2pt]
+    \multicolumn{4}{c}{Cute Creatures on Earth}\\
+    \midrule %如果表首是单行，则可以在表第二行时再使用\multicolumn{n}{cols}{text}合并表格
+    \multicolumn{1}{m{4cm}}{\centering CAT} %此处表格过小，如果不设置行宽会导致文字变大
+    &\multicolumn{1}{m{4cm}}{\centering CAT}
+    &\multicolumn{1}{m{4cm}}{\centering CAT}
+    &\multicolumn{1}{m{4cm}}{\centering CAT}\\
+    Cat&Cat&Cat& \makecell[c]{Fat\\Cat} \\
+    Cat&Cat&Cat& Cat\\
+    Cat&Cat&Cat& Cat\\
+    Cat&Cat&Cat& Cat\\
+    \bottomrule[2pt]
+    \end{tabular}}
+    \end{center}
+\end{table}
+\vspace{-0.5cm}
+

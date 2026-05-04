@@ -1,0 +1,3 @@
+"""
+Paper Engine templates package.
+"""

@@ -1,0 +1,23 @@
+import os
+import hashlib
+import json
+
+res = {}
+work_dir = "{{ work_dir }}"
+
+if os.path.exists(work_dir):
+    for root, _, files in os.walk(work_dir):
+        for f in files:
+            full_path = os.path.join(root, f)
+            rel_path = os.path.relpath(full_path, work_dir)
+            try:
+                sha256 = hashlib.sha256()
+                with open(full_path, 'rb') as f_obj:
+                    while True:
+                        data = f_obj.read(65536)
+                        if not data: break
+                        sha256.update(data)
+                res[rel_path] = sha256.hexdigest()
+            except:
+                pass
+print(json.dumps(res))

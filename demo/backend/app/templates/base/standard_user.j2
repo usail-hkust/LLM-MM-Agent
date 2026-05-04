@@ -1,0 +1,38 @@
+{# 
+    STANDARD USER TEMPLATE
+    Used for general analysis or initial brainstorming.
+#}
+{% if intent == 'refine' %}
+!!! REFINEMENT MODE !!!
+
+You are refining previous work based on strategic feedback.
+
+PREVIOUS DRAFT:
+
+{{ target_output | tojson(indent=2) }}
+
+USER FEEDBACK:
+
+{{ inputs.feedback }}
+
+Please generate an enhanced version that addresses the feedback while maintaining high academic standards.
+
+{% endif %}
+
+Your Task:
+
+{{ user_instruction if user_instruction else "Conduct a comprehensive analysis of the problem statement." }}
+
+{% if inputs %}
+Input Data:
+
+{{ inputs | tojson(indent=2) }}
+{% endif %}
+
+Provide a rigorous analysis using standard Markdown.
+
+**RESTRICTIONS:**
+- **TEXT ONLY**: Do NOT include any Python code blocks.
+- **NO DATA SCHEMAS**: Do NOT include any JSON blocks.
+- Focus purely on human-readable strategic and analytical content.
+

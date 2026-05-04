@@ -1,0 +1,431 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  /* --- 语义化布局变量 --- */
+  --header-height: 3.5rem;
+  /* 56px */
+  --sidebar-width: 280px;
+  --dock-height-collapsed: 2rem;
+  /* 32px */
+  --app-height: 100dvh;
+  /* 移动端视口高度修复 */
+
+  /* --- Z-Index 策略 --- */
+  --z-base: 0;
+  --z-dock: 30;
+  --z-header: 40;
+  --z-overlay: 50;
+
+  --background: #ffffff;
+  --foreground: #171717;
+  --history-tint: #fffbeb;
+  /* Amber-50 equivalent for history background */
+  /* [FIX] 定义安全区域 */
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+}
+
+@theme inline {
+  --color-background: #f8fafc;
+  /* slate-50: 全局背景色 */
+  --color-foreground: #0f172a;
+  /* slate-900 */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  height: var(--app-height);
+  width: 100%;
+  overflow: hidden;
+  /* 全局禁止滚动，滚动权下放给容器 */
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  overscroll-behavior: none;
+  /* 防止 iOS 橡皮筋滚动 */
+  -webkit-tap-highlight-color: transparent;
+  /* 移除点击高亮 */
+}
+
+/* --- 历史模式纹理 --- */
+.read-only-stripes {
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 10px,
+      rgba(0, 0, 0, 0.015) 10px,
+      rgba(0, 0, 0, 0.015) 20px);
+  pointer-events: none;
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), 1);
+  }
+}
+
+@keyframes exit {
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), 1);
+  }
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+/* [FIX] iOS Safari 输入框防缩放：强制字体 >= 16px */
+@media screen and (max-width: 768px) {
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+@layer components {
+
+  /* --- 交互式面板基础卡片 --- */
+  .panel-card {
+    @apply bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden transition-all duration-200;
+  }
+
+  .panel-card:hover {
+    @apply border-slate-300 shadow-md;
+  }
+
+  /* --- 按钮变体 --- */
+  .btn-base {
+    @apply flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+
+  .btn-primary {
+    @apply flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 bg-slate-900 text-white hover:bg-black border border-transparent shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 hover:border-slate-300;
+  }
+
+  .btn-danger {
+    @apply flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 bg-white text-red-600 border border-red-200 hover:bg-red-50 hover:border-red-300;
+  }
+
+  .btn-ghost {
+    @apply flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 bg-transparent text-slate-500 hover:bg-slate-100 hover:text-slate-700;
+  }
+
+  /* --- 标签与徽章 --- */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide;
+  }
+
+  .badge-blue {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-blue-50 text-blue-600 border border-blue-100;
+  }
+
+  .badge-green {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-emerald-50 text-emerald-600 border border-emerald-100;
+  }
+
+  .badge-red {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-red-50 text-red-600 border border-red-100;
+  }
+
+  .badge-slate {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-slate-100 text-slate-500 border border-slate-200;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation-name: enter;
+    animation-duration: var(--tw-duration, 150ms);
+    animation-timing-function: var(--tw-ease, cubic-bezier(0.16, 1, 0.3, 1));
+    animation-fill-mode: both;
+  }
+
+  .animate-out {
+    animation-name: exit;
+    animation-duration: var(--tw-duration, 150ms);
+    animation-timing-function: var(--tw-ease, cubic-bezier(0.4, 0, 1, 1));
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    --tw-enter-opacity: 0;
+  }
+
+  .fade-in-0 {
+    --tw-enter-opacity: 0;
+  }
+
+  .fade-out-0 {
+    --tw-exit-opacity: 0;
+  }
+
+  .zoom-in {
+    --tw-enter-scale: 0.95;
+  }
+
+  .zoom-in-95 {
+    --tw-enter-scale: 0.95;
+  }
+
+  .zoom-out-95 {
+    --tw-exit-scale: 0.95;
+  }
+
+  .slide-in-from-top {
+    --tw-enter-translate-y: -100%;
+  }
+
+  .slide-in-from-bottom {
+    --tw-enter-translate-y: 100%;
+  }
+
+  .slide-in-from-left {
+    --tw-enter-translate-x: -100%;
+  }
+
+  .slide-in-from-right {
+    --tw-enter-translate-x: 100%;
+  }
+
+  .slide-in-from-top-1 {
+    --tw-enter-translate-y: calc(var(--spacing) * -1);
+  }
+
+  .slide-in-from-bottom-2 {
+    --tw-enter-translate-y: calc(var(--spacing) * 2);
+  }
+
+  .slide-in-from-bottom-4 {
+    --tw-enter-translate-y: calc(var(--spacing) * 4);
+  }
+
+  .slide-in-from-left-1 {
+    --tw-enter-translate-x: calc(var(--spacing) * -1);
+  }
+
+  .slide-in-from-left-1\/2 {
+    --tw-enter-translate-x: -50%;
+  }
+
+  .slide-out-to-top {
+    --tw-exit-translate-y: -100%;
+  }
+
+  .slide-out-to-bottom {
+    --tw-exit-translate-y: 100%;
+  }
+
+  .slide-out-to-left {
+    --tw-exit-translate-x: -100%;
+  }
+
+  .slide-out-to-right {
+    --tw-exit-translate-x: 100%;
+  }
+
+  .slide-out-to-left-1\/2 {
+    --tw-exit-translate-x: -50%;
+  }
+
+  /* --- 动画类 (修复: 移除 @apply，直接使用 CSS 属性) --- */
+  .animate-enter {
+    /* 对应: animate-in */
+    animation-name: enter;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* 对应: fade-in */
+    --tw-enter-opacity: 0;
+
+    /* 对应: slide-in-from-bottom-2 */
+    --tw-enter-translate-y: calc(var(--spacing) * 2);
+
+    /* 对应: duration-300 */
+    animation-duration: 300ms;
+  }
+
+  /* --- 精致滚动条 --- */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #e2e8f0;
+    /* slate-200 */
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #cbd5e1;
+    /* slate-300 */
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Copilot Specific Styles */
+
+/* 1. Markdown Reset & Typography */
+.copilot-prose {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.copilot-prose p {
+  margin-bottom: 0.75em;
+}
+
+.copilot-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.copilot-prose pre {
+  margin: 0.5em 0;
+  padding: 0.75em;
+  border-radius: 0.5rem;
+  background-color: #1e293b;
+  color: #f8fafc;
+  overflow-x: auto;
+  font-family: var(--font-geist-mono);
+  font-size: 0.8em;
+}
+
+.copilot-prose code {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+  font-family: var(--font-geist-mono);
+  font-size: 0.9em;
+}
+
+.copilot-prose pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.copilot-prose ul {
+  list-style-type: disc;
+  padding-left: 1.2em;
+  margin-bottom: 0.75em;
+}
+
+.copilot-prose ol {
+  list-style-type: decimal;
+  padding-left: 1.2em;
+  margin-bottom: 0.75em;
+}
+
+.copilot-prose blockquote {
+  border-left: 3px solid #cbd5e1;
+  padding-left: 1em;
+  color: #64748b;
+  font-style: italic;
+  margin: 0.75em 0;
+}
+
+.copilot-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0;
+  font-size: 0.85em;
+}
+
+.copilot-prose th,
+.copilot-prose td {
+  border: 1px solid #e2e8f0;
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+
+.copilot-prose th {
+  background-color: #f8fafc;
+  font-weight: 600;
+}
+
+/* 2. Scrollbar Refinement for Darker Contexts (optional override) */
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #475569;
+}
+
+/* --- Disabled Input Styling (Improved Readability) --- */
+input:disabled,
+textarea:disabled {
+  opacity: 1;
+  /* 保持高不透明度，确保文字清晰可读 */
+  color: #475569;
+  /* slate-600: 深色文字 */
+  background-color: #f8fafc;
+  /* slate-50: 浅灰色背景 */
+  border-color: #e2e8f0;
+  /* slate-200 */
+  cursor: default;
+}
+
+/* --- Monaco Editor Error Decorations --- */
+.monaco-error-line {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  /* red-500/10 */
+}
+
+.monaco-error-glyph {
+  background-color: #ef4444 !important;
+  /* red-500 */
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  margin-left: 4px !important;
+  margin-top: 6px !important;
+}
+
+/* Note: Button and panel-card styles are now defined in @layer components above */

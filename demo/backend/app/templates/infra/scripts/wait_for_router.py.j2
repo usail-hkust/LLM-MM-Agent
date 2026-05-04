@@ -1,0 +1,11 @@
+import socket
+import time
+import sys
+
+for _ in range(20):
+    try:
+        with socket.create_connection(("127.0.0.1", 8080), timeout=0.5):
+            sys.exit(0)
+    except OSError:
+        time.sleep(0.5)
+sys.exit(1)

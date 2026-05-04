@@ -1,0 +1,29 @@
+.env
+.env.local
+.DS_Store
+
+# Local runtime and dependency artifacts
+.venv/
+runtime/
+storage/
+logs/
+*.log
+*.pid
+*.db
+*.sqlite
+*.sqlite3
+__pycache__/
+*.py[cod]
+
+# Local demo/test helpers not needed for a packaged demo
+cli_demo_v2.py
+test_data/
+test_data2/
+test_service.sh
+redis_test_single_worker.sh
+start_16workers.sh
+
+# Historical backup files
+app/paper_engine/manager.py.backup_*
+app/infra/gateways/llm.py.backup_*
+app/infra/persistence/redis.py.backup*

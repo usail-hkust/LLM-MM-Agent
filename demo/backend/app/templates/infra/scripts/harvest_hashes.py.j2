@@ -1,0 +1,28 @@
+import os, hashlib, json
+res = {}
+ignore_exts = set()
+if os.path.exists("main.tex"):
+    ignore_exts = {".log", ".aux", ".fls", ".fdb_latexmk", ".out", ".toc", ".gz"}
+ignore_names = {"prompt.txt", "goal.txt", "__pycache__"}
+for root, _, files in os.walk("."):
+    for f in files:
+        if f.startswith("."):
+            continue
+        if f in ignore_names:
+            continue
+        p = os.path.join(root, f)
+        _, ext = os.path.splitext(f)
+        if ext in ignore_exts:
+            continue
+        try:
+            sha256 = hashlib.sha256()
+            with open(p, 'rb') as d:
+                while True:
+                    chunk = d.read(65536)
+                    if not chunk:
+                        break
+                    sha256.update(chunk)
+            res[os.path.relpath(p, ".")] = sha256.hexdigest()
+        except Exception:
+            pass
+print(json.dumps(res))
