@@ -12,6 +12,10 @@ downloads/
 eggs/
 .eggs/
 lib/
+!demo/frontend/lib/
+!demo/frontend/lib/**
+!demo/frontend/app/lib/
+!demo/frontend/app/lib/**
 lib64/
 parts/
 sdist/
