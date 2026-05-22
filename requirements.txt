@@ -8,6 +8,7 @@ numpy
 pandas
 pypandoc
 tiktoken
+json5
 anthropic
 helm
 torch>=2.6.0
