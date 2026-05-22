@@ -42,7 +42,7 @@ class RedisManager:
         try:
             redis_url = settings.REDIS_URL
             if not redis_url:
-                logger.warning("REDIS_URL not configured, Redis features will be unavailable")
+                logger.info("REDIS_URL not configured; using local in-memory event mode")
                 self._initialized = True
                 return
 

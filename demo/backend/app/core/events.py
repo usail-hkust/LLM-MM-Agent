@@ -36,6 +36,9 @@ class DistributedEventBus:
         self._pollers: Dict[str, asyncio.Task] = {}
         self._lock = asyncio.Lock()
         self._redis_client = None
+        self._redis_checked = False
+        self._redis_available = False
+        self._fallback_logged = False
         self._shutdown_event = asyncio.Event()
 
     def _get_stream_key(self, channel: str) -> str:
@@ -44,11 +47,19 @@ class DistributedEventBus:
 
     async def _ensure_redis(self):
         """Ensure Redis client is available."""
+        if self._redis_checked and not self._redis_available:
+            return False
+
         if self._redis_client is None:
             self._redis_client = await get_redis_client()
+            self._redis_checked = True
             if self._redis_client is None:
-                logger.warning("Redis not available, falling back to in-memory mode")
+                self._redis_available = False
+                if not self._fallback_logged:
+                    logger.info("Redis not available; using in-memory event mode")
+                    self._fallback_logged = True
                 return False
+            self._redis_available = True
         return True
 
     async def publish(self, channel: str, event_type: str, payload: Any):
@@ -138,8 +149,9 @@ class DistributedEventBus:
         async with self._lock:
             self._subscribers[channel].append(q)
             
-            # Start poller if not already running
-            if channel not in self._pollers:
+            # Start Redis poller only when Redis is available. In-memory mode
+            # publishes directly to local queues and does not need polling.
+            if self._redis_available and channel not in self._pollers:
                 self._pollers[channel] = asyncio.create_task(
                     self._poller_task(channel)
                 )

@@ -801,6 +801,7 @@ class WorkflowService:
         await self.p_repo.save(project)
         
         await self._emit(project_id, NodeStatusEvent(node_id, NodeStatus.REVIEWING))
+        await self._emit(project_id, TimelineUpdateEvent(project_id))
         
         # Push the full draft data so the UI updates immediately
         version_dump = draft_version.model_dump(mode='json')

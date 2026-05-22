@@ -758,7 +758,7 @@ async def get_node_history(
                 view_state = assembler.assemble(project, node_id, blueprint, v)
                 v_data = {
                     "thought": v.selected_output.thought or "",
-                    "blocks": [b.to_ui_dict() for b in view_state.blocks],
+                    "blocks": [b.to_ui_dict() for b in view_state.state.blocks],
                     "metadata": v.selected_output.metadata
                 }
             except Exception as e:
