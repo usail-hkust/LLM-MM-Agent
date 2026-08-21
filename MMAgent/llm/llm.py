@@ -6,6 +6,29 @@ import json
 
 load_dotenv()
 
+
+def _is_gpt5_family(model: str) -> bool:
+    """Return whether a provider-prefixed model name belongs to GPT-5."""
+    model_id = (model or "").rsplit("/", 1)[-1].lower()
+    return (
+        model_id == "gpt-5"
+        or model_id.startswith("gpt-5-")
+        or model_id.startswith("gpt-5.")
+    )
+
+
+def _sampling_params_for_model(model: str):
+    """Return sampling parameters only for models that accept them."""
+    if _is_gpt5_family(model):
+        return {}
+    return {
+        "temperature": 0.7,
+        "top_p": 1.0,
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+    }
+
+
 class LLM:
 
     usages = []
@@ -44,16 +67,16 @@ class LLM:
 
     def generate(self, prompt, system="You are a helpful assistant.", usage=True):
         try:
-            response = self.client.chat.completions.create(
-                model=self.model_name,
-                messages=[
+            request_params = {
+                "model": self.model_name,
+                "messages": [
                     {'role': 'system', 'content': system},
                     {'role': 'user', 'content': prompt}
                 ],
-                temperature=0.7,
-                top_p=1.0,
-                frequency_penalty=0.0,
-                presence_penalty=0.0
+            }
+            request_params.update(_sampling_params_for_model(self.model_name))
+            response = self.client.chat.completions.create(
+                **request_params
             )
             answer = response.choices[0].message.content
             usage = {
