@@ -72,6 +72,9 @@ FRONTEND_MODE=dev bash demo/scripts/run.sh
 - SQLite data and uploaded files are stored under `demo/runtime/` and `demo/backend/runtime/`.
 - Browser settings can override LLM/E2B keys through `X-LLM-*` and `X-E2B-API-Key` headers.
 - Redis is optional. Leave `REDIS_URL` empty for local single-process mode.
+- `SANDBOX_TIMEOUT` controls the E2B sandbox lease in seconds. Reused sandboxes
+  renew this lease automatically. E2B currently allows up to 3600 seconds on
+  Hobby plans and 86400 seconds on Pro plans.
 
 ## Non-Commercial Use
 

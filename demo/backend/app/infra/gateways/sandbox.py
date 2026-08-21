@@ -69,9 +69,23 @@ class SandboxPool:
             if project_id in self._pool:
                 sb, last_used = self._pool[project_id]
                 if now - last_used < self._session_ttl:
-                    # Update last used time
-                    self._pool[project_id] = (sb, now)
-                    return sb, False  # Reused existing session
+                    try:
+                        # The local cache TTL and E2B sandbox timeout are
+                        # independent. Renew the remote lease whenever the
+                        # sandbox is reused so a frequently accessed cache
+                        # entry cannot outlive the actual sandbox.
+                        await sb.set_timeout(settings.SANDBOX_TIMEOUT)
+                        self._pool[project_id] = (sb, now)
+                        return sb, False  # Reused existing session
+                    except Exception as e:
+                        # A sandbox may have expired or been killed outside
+                        # this process while its cached client still exists.
+                        logger.warning(
+                            "Cached Sandbox for %s is unavailable; creating a replacement: %s",
+                            project_id,
+                            e,
+                        )
+                        del self._pool[project_id]
             
             # Create new session
             try:
@@ -107,7 +121,9 @@ class SandboxPool:
             target = next((s for s in found if s.state == "running"), None)
             if target:
                 logger.info(f"Resuming Sandbox {target.sandbox_id} for {project_id}")
-                return await AsyncSandbox.connect(target.sandbox_id, api_key=api_key)
+                sb = await AsyncSandbox.connect(target.sandbox_id, api_key=api_key)
+                await sb.set_timeout(settings.SANDBOX_TIMEOUT)
+                return sb
         except Exception as e:
             logger.warning(f"Sandbox discovery failed: {e}")
         
@@ -862,6 +878,7 @@ class SandboxGateway:
             if target:
                 logger.info(f"Resuming Sandbox {target.sandbox_id} for {project_id}")
                 sb = await AsyncSandbox.connect(target.sandbox_id, api_key=api_key)  # [BYOK]
+                await sb.set_timeout(settings.SANDBOX_TIMEOUT)
                 return sb, False  # Resumed
 
         except Exception as e:
@@ -926,7 +943,9 @@ class SandboxGateway:
 
             target = next((s for s in found if s.state == "running"), None)
             if target:
-                return await AsyncSandbox.connect(target.sandbox_id, api_key=key)  # [BYOK]
+                sb = await AsyncSandbox.connect(target.sandbox_id, api_key=key)  # [BYOK]
+                await sb.set_timeout(settings.SANDBOX_TIMEOUT)
+                return sb
         except Exception as e:
             logger.warning(f"Active session lookup failed ({e}).")
 
