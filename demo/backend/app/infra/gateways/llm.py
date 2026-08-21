@@ -31,6 +31,46 @@ from app.utils.context_compressor import get_compressor, compress_llm_context
 
 logger = logging.getLogger(__name__)
 
+_GPT5_UNSUPPORTED_SAMPLING_PARAMS = frozenset({
+    "temperature",
+    "top_p",
+    "frequency_penalty",
+    "presence_penalty",
+})
+
+
+def _is_gpt5_family(model: str) -> bool:
+    """Return whether a provider-prefixed model name belongs to GPT-5."""
+    model_id = (model or "").rsplit("/", 1)[-1].lower()
+    return (
+        model_id == "gpt-5"
+        or model_id.startswith("gpt-5-")
+        or model_id.startswith("gpt-5.")
+    )
+
+
+def _prepare_completion_kwargs(
+    model: str,
+    kwargs: Dict,
+    *,
+    temperature: Optional[float],
+    excluded_keys=(),
+) -> Dict:
+    """Build model-compatible optional kwargs for a LiteLLM completion."""
+    excluded = set(excluded_keys) | {"temperature"}
+    completion_kwargs = {
+        key: value for key, value in kwargs.items() if key not in excluded
+    }
+
+    if _is_gpt5_family(model):
+        for key in _GPT5_UNSUPPORTED_SAMPLING_PARAMS:
+            completion_kwargs.pop(key, None)
+        logger.info("Omitting optional sampling parameters for GPT-5 model %s", model)
+    elif temperature is not None:
+        completion_kwargs["temperature"] = temperature
+
+    return completion_kwargs
+
 # [REFACTOR] Removed global litellm.api_key and litellm.api_base assignments.
 # Configuration is now resolved per-request via RuntimeConfig.
 
@@ -170,18 +210,23 @@ class LLMGateway:
             logger.info(f"Compressed to: {new_info['total']} tokens ({len(messages)} messages)")
 
         try:
+            completion_kwargs = _prepare_completion_kwargs(
+                active_model,
+                kwargs,
+                temperature=kwargs.get("temperature", 1.0),
+                excluded_keys={"max_tokens", "api_key"},
+            )
             # Use stream=True to avoid connection timeouts on long generations
             stream = await litellm.acompletion(
                 model=active_model,
                 messages=messages,
-                temperature=kwargs.get("temperature", 1.0),
                 stream=True,  # Stream internally to avoid idle timeout
                 api_key=api_key,
                 api_base=base_url if base_url else None,
                 custom_llm_provider="openai" if is_zhipu else None,  # [v1.3] 智谱使用 OpenAI 兼容模式
                 timeout=600,
                 num_retries=2,  # [FIX] 配置 LiteLLM 重试次数，避免无限重试
-                **{k: v for k, v in kwargs.items() if k not in ["temperature", "max_tokens", "api_key"]}
+                **completion_kwargs,
             )
 
             # Accumulate all chunks to reconstruct full content
@@ -254,17 +299,22 @@ class LLMGateway:
             logger.info(f"Compressed to: {new_info['total']} tokens ({len(messages)} messages)")
         
         try:
+            completion_kwargs = _prepare_completion_kwargs(
+                active_model,
+                kwargs,
+                temperature=kwargs.get("temperature", 1.0),
+                excluded_keys={"max_tokens", "api_key"},
+            )
             # Use stream=True to avoid connection timeouts on long generations
             stream = await litellm.acompletion(
                 model=active_model,
                 messages=messages,
-                temperature=kwargs.get("temperature", 1.0),
                 stream=True,  # Stream internally to avoid idle timeout
                 api_key=api_key,
                 api_base=base_url if base_url else None,
                 custom_llm_provider="openai" if is_zhipu else None,  # [v1.3] 智谱使用 OpenAI 兼容模式
                 timeout=600,
-                **{k: v for k, v in kwargs.items() if k not in ["temperature", "max_tokens", "api_key"]}
+                **completion_kwargs,
             )
             
             # Accumulate all chunks to reconstruct full content
@@ -552,16 +602,21 @@ class LLMGateway:
             
             # [v1.3] 智谱使用 OpenAI 兼容模式
             is_zhipu = self._is_zhipu(base_url)
+            completion_kwargs = _prepare_completion_kwargs(
+                active_model,
+                kwargs,
+                temperature=temperature,
+                excluded_keys={"api_key"},
+            )
             
             stream = await litellm.acompletion(
                 model=active_model,
                 messages=messages,
-                temperature=temperature,
                 stream=True,
                 api_key=api_key,
                 api_base=base_url if base_url else None,
                 custom_llm_provider="openai" if is_zhipu else None,  # [v1.3] 智谱使用 OpenAI 兼容模式
-                **{k: v for k, v in kwargs.items() if k not in ["temperature", "api_key"]}
+                **completion_kwargs,
             )
 
             async for chunk in stream:
