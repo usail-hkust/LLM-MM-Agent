@@ -293,7 +293,7 @@ If you find this project helpful, feel free to explore more of our work!
 
 [![Forkers repo roster for @usail-hkust/LLM-MM-Agent](https://reporoster.com/forks/usail-hkust/LLM-MM-Agent)](https://github.com/usail-hkust/LLM-MM-Agent/network/members)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=usail-hkust/LLM-MM-Agent&type=Date)](https://star-history.com/#usail-hkust/LLM-MM-Agent&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=usail-hkust/LLM-MM-Agent&type=Date)](https://star-history.dera.page/#usail-hkust/LLM-MM-Agent&Date)
 
 </div>
 
