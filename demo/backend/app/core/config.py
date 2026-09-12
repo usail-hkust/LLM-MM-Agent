@@ -118,6 +118,8 @@ class Settings(BaseSettings):
     LLM_CONTEXT_WINDOW_TOKENS: int = 120_000
     LLM_CONTEXT_SAFETY_TOKENS: int = 8_192
     LLM_DEFAULT_MAX_OUTPUT_TOKENS: int = 4_096
+    AGENT_WORKING_MEMORY_TOKENS: int = 3_000
+    AGENT_AUTOCOMPACT_PERCENT: int = 70
     
     # Router Configuration Toggle
     # 如果为 True，SandboxGateway 将启动 Router 并劫持 claude 请求

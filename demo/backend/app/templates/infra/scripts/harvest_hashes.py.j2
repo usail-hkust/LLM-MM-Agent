@@ -4,7 +4,9 @@ ignore_exts = set()
 if os.path.exists("main.tex"):
     ignore_exts = {".log", ".aux", ".fls", ".fdb_latexmk", ".out", ".toc", ".gz"}
 ignore_names = {"prompt.txt", "goal.txt", "__pycache__"}
-for root, _, files in os.walk("."):
+for root, dirs, files in os.walk("."):
+    # Internal state (memory bundle and optimistic-sync sidecars) is not a user artifact.
+    dirs[:] = [d for d in dirs if not d.startswith(".")]
     for f in files:
         if f.startswith("."):
             continue

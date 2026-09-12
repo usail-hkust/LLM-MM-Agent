@@ -175,6 +175,10 @@ class ContextCompressor:
         history = [message for message in messages if message.get("role") != "system"]
         return self.compress(history, max_tokens=history_budget), bounded_context
 
+    def compact_text(self, text: str, max_tokens: int) -> str:
+        """Build a bounded text view while leaving the durable source untouched."""
+        return self._truncate_text(text, max_tokens)
+
     def _fit_recent_group(
         self,
         indexed_messages: List[Tuple[int, Dict[str, Any]]],

@@ -39,6 +39,7 @@ from app.infra.file_parsers import FileETL
 from app.infra.persistence.database import AsyncSessionLocal
 from app.utils.files import guess_mime_type, ensure_dir # [FIX] Add guess_mime_type
 from app.services.prompt_factory import PromptFactory
+from app.services.agent_memory_service import AgentMemoryService
 from app.paper_engine import PaperEngineManager, PaperWorkspace
 from app.paper_engine.domain import VirtualFile, FileType, CompileStatus
 from app.paper_engine.asset_pipeline import AssetPipeline
@@ -83,6 +84,7 @@ class NodeProcessor:
         self.sandbox = sandbox
         self.assets = assets
         self.prompts = prompts
+        self.agent_memory = AgentMemoryService(assets)
         self.paper_manager = paper_manager
         self.bus = event_bus
         from app.infra.persistence.repositories import ProjectRepository
@@ -830,26 +832,35 @@ class NodeProcessor:
         asset_map: Optional[Dict[str, str]] = None,
         runtime: Optional[RuntimeConfig] = None  # [BYOK]
     ) -> List[NodeOutput]:
-        # 1. Init Environment (Tarball)
+        # 1. Materialize a project-scoped durable memory bundle. The prompt gets
+        # only a rolling working summary; the agent can retrieve exact history.
+        agent_context = self.prompts.physicalize_context(context_str, asset_map)
+        memory_bundle = await self.agent_memory.materialize(agent_context)
+        agent_manifest = (file_manifest or {}).copy()
+        agent_manifest.update(memory_bundle.manifest)
+
+        # 2. Init Environment (Tarball)
         sb = await self.sandbox.start_agentic_session(
             project_id,
             blueprint.id,
             runtime=runtime,  # [BYOK]
-            context_manifest=file_manifest if not asset_map else None,
-            layout=file_manifest if asset_map else None
+            context_manifest=agent_manifest if not asset_map else None,
+            layout=agent_manifest if asset_map else None
         )
 
-        # 2. Generate Prompt
+        # 3. Generate Prompt
         agent_goal = self.prompts.create_agent_goal(
             blueprint,
             intent,
             context_str,
             user_input,
             file_manifest=file_manifest,
-            asset_map=asset_map
+            asset_map=asset_map,
+            context_summary=memory_bundle.working_summary,
+            memory_entry_count=memory_bundle.entry_count,
         )
 
-        # 3. Run & Stream with Boundary
+        # 4. Run & Stream with Boundary
         logs = []
         exit_code = 0
         
@@ -900,13 +911,13 @@ class NodeProcessor:
             "message": "Execution completed, harvesting artifacts..."
         })
 
-        # 4. Harvest Artifacts (Diff Sync)
+        # 5. Harvest Artifacts (Diff Sync)
         # [CRITICAL FIX] Prevent Ghost Asset Re-downloading
         # If we filtered 'plot.png' from injection, but it exists in Sandbox (from prev run),
         # Harvest will think it's new because it's not in 'file_manifest'.
         # We must fetch the FULL project state to deduplicate.
         
-        full_knowledge_manifest = file_manifest.copy()
+        full_knowledge_manifest = agent_manifest.copy()
         try:
             # Fetch global state to know what ALREADY exists in the project
             from uuid import UUID

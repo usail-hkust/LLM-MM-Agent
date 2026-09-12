@@ -4,6 +4,20 @@ You are {{ agent_role }}, a specialist in {{ agent_focus }}.
 # CONTEXT
 {{ context_summary }}
 
+# PERSISTENT PROJECT MEMORY
+{% if memory_entry_count %}
+The complete upstream history ({{ memory_entry_count }} indexed steps) is available under `.mm_agent/memory/`.
+Start from the compact context above. If a fact, decision, code detail, or earlier result is missing or uncertain, retrieve it yourself before acting:
+
+- `python3 .mm_agent/memory/query_memory.py list`
+- `python3 .mm_agent/memory/query_memory.py search "keyword"`
+- `python3 .mm_agent/memory/query_memory.py show "NODE_ID"`
+
+Read only the relevant entries so tool output does not overflow the model context. The archive and database are exact, durable sources; compression applies only to the working view. Treat `.mm_agent` as read-only infrastructure.
+{% else %}
+No upstream workflow steps are available yet.
+{% endif %}
+
 # ASSET HANDOVER (From Previous Step)
 {% if handover_notes %}
 {{ handover_notes }}
@@ -30,4 +44,3 @@ No specific assets handed over. Start based on available files.
 - **VISUALIZATION DIVERSITY** (if visualization is required by PRIMARY DIRECTIVE): If generating plots, ensure every plot uses a **distinct** visualization technique (e.g., if a scatter plot exists, use a heatmap or contour plot next). Strictly avoid repetition. **Note**: Follow the PRIMARY DIRECTIVE above - if it explicitly bans visualization, do NOT generate any plots.
 - Save all outputs to the current directory.
 - Proceed autonomously.
-

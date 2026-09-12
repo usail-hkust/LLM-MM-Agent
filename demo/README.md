@@ -91,6 +91,22 @@ The demo separates durable memory from an individual model request:
   turns, and retains the beginning and end of oversized workflow prompts.
 - Compaction never deletes persisted history. Older content can still be loaded
   by later requests, exported, or inspected in the UI.
+- Before every autonomous sandbox run, upstream node history is also rebuilt as
+  a project-scoped memory bundle under `.mm_agent/memory/`: an exact Markdown
+  archive, a SQLite index, and a bounded rolling checkpoint. The agent can list,
+  search, and page in only the relevant historical steps instead of loading the
+  entire project into one request. The raw application database and other
+  projects are never exposed to the sandbox.
+
+`AGENT_WORKING_MEMORY_TOKENS` controls the compact checkpoint included in the
+initial agent goal. Changing it does not delete or truncate the archive/database
+snapshot.
+
+For the long-running agent CLI session itself, the selected Context Window is
+passed to its auto-compaction logic and `AGENT_AUTOCOMPACT_PERCENT` (default
+70) triggers compaction before the provider limit. A small unscoped agent rule
+is reloaded after compaction so the agent retains the retrieval protocol and
+does not need to keep the full archive in conversation memory.
 
 The default 120,000-token window is conservative. Increase it only when the
 configured model and API endpoint advertise a larger context window. Provider

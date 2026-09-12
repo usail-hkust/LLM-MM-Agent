@@ -78,6 +78,15 @@ class ContextCompressorTests(unittest.TestCase):
         self.assertEqual(output_reserve, 4_096)
         self.assertEqual(safety_reserve, 8_192)
 
+    def test_compact_text_keeps_head_and_recent_tail(self):
+        original = "FIRST-DECISION\n" + ("middle\n" * 5_000) + "LATEST-STATE"
+        result = self.compressor.compact_text(original, 500)
+
+        self.assertLessEqual(estimate_tokens(result), 500)
+        self.assertTrue(result.startswith("FIRST-DECISION"))
+        self.assertTrue(result.endswith("LATEST-STATE"))
+        self.assertIn(TRUNCATION_MARKER.strip(), result)
+
 
 if __name__ == "__main__":
     unittest.main()

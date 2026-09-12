@@ -13,6 +13,8 @@ from typing import Dict, Any, List, Optional, Tuple
 from app.domain.blueprints import NodeBlueprint
 from app.domain.unified_io import NodeOutput
 from app.core.templates import jinja_env
+from app.core.config import settings
+from app.utils.context_compressor import get_compressor
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +46,12 @@ class PromptFactory:
             physicalized_text = physicalized_text.replace(v_path, p_path)
             
         return physicalized_text
+
+    def physicalize_context(
+        self, text: str, asset_map: Optional[Dict[str, str]]
+    ) -> str:
+        """Expose the execution-path rewrite for sandbox memory materialization."""
+        return self._physicalize_context(text, asset_map)
 
     def create_messages(
         self,
@@ -256,7 +264,9 @@ class PromptFactory:
         context_str: str,
         user_input: Dict[str, Any],
         file_manifest: Dict[str, str] = None,
-        asset_map: Dict[str, str] = None
+        asset_map: Dict[str, str] = None,
+        context_summary: Optional[str] = None,
+        memory_entry_count: int = 0,
     ) -> str:
         """
         Construct a context-aware goal for agentic CLI.
@@ -268,6 +278,13 @@ class PromptFactory:
 
         # [FIX] Rewrite context paths instead of appending mapping
         clean_context_str = self._physicalize_context(context_str, asset_map)
+        bounded_context = (
+            context_summary
+            if context_summary is not None
+            else get_compressor().compact_text(
+                clean_context_str or "", settings.AGENT_WORKING_MEMORY_TOKENS
+            )
+        )
 
         handover, constraints = self._build_handover_context(user_input, file_manifest, focus)
 
@@ -288,7 +305,8 @@ class PromptFactory:
             return tmpl.render(
                 agent_role=role,
                 agent_focus=focus,
-                context_summary=(clean_context_str or "")[:3000],
+                context_summary=bounded_context,
+                memory_entry_count=memory_entry_count,
                 handover_notes=handover,
                 mission_instruction=user_input.get("instruction", "Solve the task."),
                 primary_directive=directive,

@@ -605,6 +605,28 @@ class SandboxGateway:
             logger.error(f"Failed to start router: {e}")
             return ""
 
+    @staticmethod
+    def _agent_context_management_env(
+        runtime: Optional[RuntimeConfig] = None,
+    ) -> Dict[str, str]:
+        """Tell the agent CLI when to compact for the actual routed model."""
+        context_window = (
+            runtime.llm_context_window_tokens
+            if runtime and runtime.llm_context_window_tokens
+            else settings.LLM_CONTEXT_WINDOW_TOKENS
+        )
+        context_window = max(1_024, int(context_window))
+        compact_percent = min(95, max(1, int(settings.AGENT_AUTOCOMPACT_PERCENT)))
+        max_output = min(
+            max(1, int(settings.LLM_DEFAULT_MAX_OUTPUT_TOKENS)),
+            max(1, context_window // 2),
+        )
+        return {
+            "CLAUDE_CODE_AUTO_COMPACT_WINDOW": str(context_window),
+            "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": str(compact_percent),
+            "CLAUDE_CODE_MAX_OUTPUT_TOKENS": str(max_output),
+        }
+
     async def run_agent_cli(
         self, 
         sb: AsyncSandbox, 
@@ -627,6 +649,7 @@ class SandboxGateway:
             "CI": "true",
             "NO_COLOR": "true",
         }
+        env.update(self._agent_context_management_env(runtime))
 
         if router_url:
             env["ANTHROPIC_BASE_URL"] = router_url
@@ -823,6 +846,15 @@ class SandboxGateway:
         new_artifacts: Dict[str, bytes] = {}
         final_manifest: Dict[str, str] = {}
 
+        # The harvest script intentionally hides internal infrastructure files.
+        # Preserve their known hashes in the sync sidecar so an unchanged memory
+        # snapshot is not uploaded again on the next agent turn.
+        internal_manifest = {
+            fname: fhash
+            for fname, fhash in known_manifest.items()
+            if any(part.startswith(".") for part in Path(fname).parts)
+        }
+
         for fname, fhash in remote_map.items():
             if fname in ["prompt.txt", "goal.txt"]:
                 continue
@@ -843,7 +875,8 @@ class SandboxGateway:
         # Update sidecar manifest to keep optimistic sync accurate
         try:
             manifest_path = f"{settings.SANDBOX_DATA_DIR}/{self.manifest_file}"
-            await sb.files.write(manifest_path, json.dumps(final_manifest))
+            sidecar_manifest = {**internal_manifest, **final_manifest}
+            await sb.files.write(manifest_path, json.dumps(sidecar_manifest))
         except Exception as e:
             logger.debug(f"Failed to update sidecar manifest after harvest: {e}")
 
