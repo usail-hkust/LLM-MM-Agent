@@ -1,9 +1,12 @@
 import hashlib
+import os
 import sqlite3
 import subprocess
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
+from unittest.mock import patch
 
 from app.core.config import settings
 from app.services.agent_memory_service import AgentMemoryService, MEMORY_ROOT
@@ -21,6 +24,38 @@ class FakeAssetManager:
 
 
 class AgentMemoryServiceTests(unittest.IsolatedAsyncioTestCase):
+    def test_database_connection_closes_before_temporary_file_is_deleted(self):
+        events = []
+        # Initialize tempfile's platform-specific directory probe before
+        # intercepting unlink calls for the database-under-test.
+        tempfile.gettempdir()
+        real_connect = sqlite3.connect
+        real_unlink = os.unlink
+
+        class TrackingConnection:
+            def __init__(self, path):
+                self.connection = real_connect(path)
+
+            def __getattr__(self, name):
+                return getattr(self.connection, name)
+
+            def close(self):
+                self.connection.close()
+                events.append("connection_closed")
+
+        def checked_unlink(path):
+            self.assertIn("connection_closed", events)
+            events.append("file_deleted")
+            real_unlink(path)
+
+        with patch(
+            "app.services.agent_memory_service.sqlite3.connect", TrackingConnection
+        ), patch("app.services.agent_memory_service.os.unlink", checked_unlink):
+            database = AgentMemoryService._build_database([])
+
+        self.assertTrue(database.startswith(b"SQLite format 3"))
+        self.assertEqual(events, ["connection_closed", "file_deleted"])
+
     async def test_materializes_exact_archive_searchable_database_and_summary(self):
         old_detail = "OLD-DECISION: use a robust median estimator"
         history = "\n".join(
@@ -64,7 +99,7 @@ class AgentMemoryServiceTests(unittest.IsolatedAsyncioTestCase):
                 assets.blobs[bundle.manifest[f"{MEMORY_ROOT}/query_memory.py"]]
             )
 
-            with sqlite3.connect(db_path) as conn:
+            with closing(sqlite3.connect(db_path)) as conn:
                 rows = conn.execute(
                     "SELECT node_id, title, content FROM memory_entries ORDER BY position"
                 ).fetchall()

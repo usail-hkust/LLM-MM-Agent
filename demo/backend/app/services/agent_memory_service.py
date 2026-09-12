@@ -13,6 +13,7 @@ import os
 import re
 import sqlite3
 import tempfile
+from contextlib import closing
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
@@ -258,7 +259,10 @@ class AgentMemoryService:
         fd, path = tempfile.mkstemp(suffix=".sqlite3")
         os.close(fd)
         try:
-            with sqlite3.connect(path) as conn:
+            # sqlite3.Connection.__exit__ commits/rolls back but does not close
+            # the handle. Windows refuses to unlink an open database, so wrap
+            # the connection in closing() and release it before reading/deleting.
+            with closing(sqlite3.connect(path)) as conn:
                 conn.execute(
                     """CREATE TABLE memory_entries (
                        position INTEGER PRIMARY KEY,
@@ -304,8 +308,9 @@ class AgentMemoryService:
                     )
                 except sqlite3.OperationalError:
                     # Minimal Python builds may omit FTS5. The bundled query
-                    # tool transparently falls back to exact substring search.
+                    # tool transparently falls back to substring search.
                     pass
+                conn.commit()
             with open(path, "rb") as database_file:
                 return database_file.read()
         finally:
