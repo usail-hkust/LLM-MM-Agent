@@ -24,6 +24,7 @@ API_KEY=your_llm_key
 BASE_URL=https://api.minimaxi.com/anthropic
 MODEL_NAME=MiniMax-M2.7-highspeed
 AGENT_MODEL_NAME=MiniMax-M2.7-highspeed
+LLM_CONTEXT_WINDOW_TOKENS=120000
 E2B_API_KEY=your_e2b_key
 ```
 
@@ -71,10 +72,30 @@ FRONTEND_MODE=dev bash demo/scripts/run.sh
 
 - SQLite data and uploaded files are stored under `demo/runtime/` and `demo/backend/runtime/`.
 - Browser settings can override LLM/E2B keys through `X-LLM-*` and `X-E2B-API-Key` headers.
+- Set **Context Window** in browser settings to the selected model's advertised
+  input + output limit. `LLM_CONTEXT_WINDOW_TOKENS` is the server-side fallback.
 - Redis is optional. Leave `REDIS_URL` empty for local single-process mode.
 - `SANDBOX_TIMEOUT` controls the E2B sandbox lease in seconds. Reused sandboxes
   renew this lease automatically. E2B currently allows up to 3600 seconds on
   Hobby plans and 86400 seconds on Pro plans.
+
+## Context Management
+
+The demo separates durable memory from an individual model request:
+
+- Complete workflow outputs remain in `node_versions`, and complete Copilot
+  messages remain in `copilot_messages`.
+- Before every OpenAI-compatible, Anthropic-compatible, Zhipu, streaming, or
+  non-streaming request, the backend builds a bounded working set. It reserves
+  `LLM_DEFAULT_MAX_OUTPUT_TOKENS` plus `LLM_CONTEXT_SAFETY_TOKENS`, keeps recent
+  turns, and retains the beginning and end of oversized workflow prompts.
+- Compaction never deletes persisted history. Older content can still be loaded
+  by later requests, exported, or inspected in the UI.
+
+The default 120,000-token window is conservative. Increase it only when the
+configured model and API endpoint advertise a larger context window. Provider
+prompt caching can reduce cost and latency, but it does not increase the model's
+maximum context length.
 
 ## Non-Commercial Use
 

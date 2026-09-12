@@ -53,6 +53,7 @@ def get_runtime_config(request: Request) -> RuntimeConfig:
         llm_api_key=headers.get("X-LLM-API-Key"),  # No fallback - user MUST provide
         llm_base_url=headers.get("X-LLM-Base-URL") or None,
         llm_model_name=headers.get("X-LLM-Model") or None,
+        llm_context_window_tokens=headers.get("X-LLM-Context-Window") or None,
         e2b_api_key=headers.get("X-E2B-API-Key") or None
     )
 

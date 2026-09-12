@@ -89,12 +89,12 @@ class CopilotRepository:
             return msg
 
     async def get_messages(self, session_id: str, limit: int = 50) -> List[CopilotMessageDB]:
-        """Get messages for a session, ordered by created_at ascending."""
+        """Get the most recent messages, returned in chronological order."""
         async with AsyncSessionLocal() as session:
             result = await session.execute(
                 select(CopilotMessageDB)
                 .where(CopilotMessageDB.session_id == session_id)
-                .order_by(CopilotMessageDB.created_at.asc())
+                .order_by(CopilotMessageDB.created_at.desc())
                 .limit(limit)
             )
-            return result.scalars().all()
+            return list(reversed(result.scalars().all()))

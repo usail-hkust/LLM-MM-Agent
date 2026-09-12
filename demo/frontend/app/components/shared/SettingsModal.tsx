@@ -115,6 +115,33 @@ export function SettingsModal() {
             />
           </div>
 
+          {/* Context Window */}
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
+              <div className="p-1 bg-slate-100 rounded-md">
+                <Cpu className="w-3.5 h-3.5" />
+              </div>
+              Context Window (tokens)
+            </label>
+            <input
+              type="number"
+              min={1024}
+              step={1024}
+              value={config.contextWindowTokens}
+              onChange={(e) => {
+                const tokens = Number(e.target.value);
+                if (Number.isFinite(tokens) && tokens >= 1024) {
+                  updateConfig({ contextWindowTokens: Math.floor(tokens) });
+                }
+                setValidationResult(null);
+              }}
+              className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-slate-400 font-mono transition-all"
+            />
+            <p className="text-[11px] text-slate-400 px-1">
+              Set this to the model&apos;s advertised input + output limit. The backend keeps a safety reserve and compacts the request automatically.
+            </p>
+          </div>
+
           {/* API Key */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">

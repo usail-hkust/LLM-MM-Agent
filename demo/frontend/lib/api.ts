@@ -36,12 +36,14 @@ const getLLMConfig = () => {
   const legacyConfig = extractState(legacyRaw);
   const publicRaw =
     safeJSONParse(localStorage.getItem(PUBLIC_CONFIG_KEY)) || legacyConfig;
+  const publicConfig = extractState(publicRaw);
   const secureRaw = safeJSONParse(sessionStorage.getItem(SECURE_CONFIG_KEY));
   const secureConfig = extractState(secureRaw);
 
   return {
-    modelName: publicRaw?.modelName || legacyConfig?.modelName || "",
-    baseUrl: publicRaw?.baseUrl || legacyConfig?.baseUrl || "",
+    modelName: publicConfig?.modelName || legacyConfig?.modelName || "",
+    baseUrl: publicConfig?.baseUrl || legacyConfig?.baseUrl || "",
+    contextWindowTokens: publicConfig?.contextWindowTokens || 120000,
     apiKey: secureConfig?.apiKey || legacyConfig?.apiKey || "",
   };
 };
@@ -75,6 +77,9 @@ const buildHeaders = (options: RequestInit) => {
   if (llmConfig.apiKey) headers.set("X-LLM-API-Key", llmConfig.apiKey);
   if (llmConfig.modelName) headers.set("X-LLM-Model", llmConfig.modelName);
   if (llmConfig.baseUrl) headers.set("X-LLM-Base-URL", llmConfig.baseUrl);
+  if (llmConfig.contextWindowTokens) {
+    headers.set("X-LLM-Context-Window", String(llmConfig.contextWindowTokens));
+  }
 
   return headers;
 };

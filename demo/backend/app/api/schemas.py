@@ -45,6 +45,7 @@ class RuntimeConfig(BaseModel):
     llm_api_key: Optional[str] = None
     llm_base_url: Optional[str] = None
     llm_model_name: Optional[str] = None
+    llm_context_window_tokens: Optional[int] = Field(default=None, ge=1_024)
     e2b_api_key: Optional[str] = None
 
     model_config = ConfigDict(from_attributes=True)
@@ -87,6 +88,7 @@ class ModelConfig(BaseModel):
     baseUrl: Optional[str] = None
     apiKey: Optional[str] = None
     temperature: Optional[float] = 0.7
+    contextWindowTokens: Optional[int] = Field(default=None, ge=1_024)
 
 # [FIX Issue 3] Standard OpenAI Chat Request for direct pass-through
 class ChatCompletionRequest(BaseModel):

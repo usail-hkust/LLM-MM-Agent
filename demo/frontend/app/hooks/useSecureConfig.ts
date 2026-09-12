@@ -10,8 +10,10 @@ const SECURE_CONFIG_KEY = "mm_agent_config_secure";
 interface PublicState {
   modelName: string;
   baseUrl: string;
+  contextWindowTokens: number;
   setModelName: (name: string) => void;
   setBaseUrl: (url: string) => void;
+  setContextWindowTokens: (tokens: number) => void;
 }
 
 const usePublicStore = create<PublicState>()(
@@ -19,8 +21,10 @@ const usePublicStore = create<PublicState>()(
     (set) => ({
       modelName: "",
       baseUrl: "",
+      contextWindowTokens: 120000,
       setModelName: (name) => set({ modelName: name }),
       setBaseUrl: (url) => set({ baseUrl: url }),
+      setContextWindowTokens: (tokens) => set({ contextWindowTokens: tokens }),
     }),
     {
       name: PUBLIC_CONFIG_KEY,
@@ -59,21 +63,40 @@ export function useSecureConfig() {
     const headers: Record<string, string> = {};
     if (publicState.modelName) headers["X-LLM-Model"] = publicState.modelName;
     if (publicState.baseUrl) headers["X-LLM-Base-URL"] = publicState.baseUrl;
+    if (publicState.contextWindowTokens) {
+      headers["X-LLM-Context-Window"] = String(publicState.contextWindowTokens);
+    }
     if (secureState.apiKey) headers["X-LLM-API-Key"] = secureState.apiKey;
     if (secureState.e2bKey) headers["X-E2B-API-Key"] = secureState.e2bKey;
     return headers;
-  }, [publicState.baseUrl, publicState.modelName, secureState.apiKey, secureState.e2bKey]);
+  }, [
+    publicState.baseUrl,
+    publicState.contextWindowTokens,
+    publicState.modelName,
+    secureState.apiKey,
+    secureState.e2bKey,
+  ]);
 
   return {
     config: {
       modelName: publicState.modelName,
       baseUrl: publicState.baseUrl,
+      contextWindowTokens: publicState.contextWindowTokens,
       apiKey: secureState.apiKey,
       e2bKey: secureState.e2bKey,
     },
-    updateConfig: (updates: Partial<{ modelName: string; baseUrl: string; apiKey: string; e2bKey: string }>) => {
+    updateConfig: (updates: Partial<{
+      modelName: string;
+      baseUrl: string;
+      contextWindowTokens: number;
+      apiKey: string;
+      e2bKey: string;
+    }>) => {
       if (updates.modelName !== undefined) publicState.setModelName(updates.modelName);
       if (updates.baseUrl !== undefined) publicState.setBaseUrl(updates.baseUrl);
+      if (updates.contextWindowTokens !== undefined) {
+        publicState.setContextWindowTokens(updates.contextWindowTokens);
+      }
       if (updates.apiKey !== undefined) secureState.setApiKey(updates.apiKey);
       if (updates.e2bKey !== undefined) secureState.setE2bKey(updates.e2bKey);
     },

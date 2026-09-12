@@ -112,6 +112,12 @@ class Settings(BaseSettings):
     BASE_URL: str = "https://api.openai.com/v1"
     MODEL_NAME: str = "gpt-4o-mini"
     AGENT_MODEL_NAME: str = "" # 将被 Router 映射的目标模型 (默认使用 MODEL_NAME)
+
+    # Context working-set limits. Complete workflow versions and Copilot messages
+    # remain in the database; these values only bound each outbound LLM request.
+    LLM_CONTEXT_WINDOW_TOKENS: int = 120_000
+    LLM_CONTEXT_SAFETY_TOKENS: int = 8_192
+    LLM_DEFAULT_MAX_OUTPUT_TOKENS: int = 4_096
     
     # Router Configuration Toggle
     # 如果为 True，SandboxGateway 将启动 Router 并劫持 claude 请求

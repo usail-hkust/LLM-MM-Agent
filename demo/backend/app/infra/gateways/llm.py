@@ -27,7 +27,7 @@ from app.infra.gateways.anthropic_compat import (
     is_anthropic_compatible_base,
     normalize_anthropic_model,
 )
-from app.utils.context_compressor import get_compressor, compress_llm_context
+from app.utils.context_compressor import calculate_input_budget, get_compressor
 
 logger = logging.getLogger(__name__)
 
@@ -149,6 +149,45 @@ class LLMGateway:
             
         return api_key, base_url, model
 
+    def _prepare_context(
+        self,
+        messages: List[Dict[str, str]],
+        runtime: Optional[RuntimeConfig],
+        *,
+        max_output_tokens: int,
+        context_window_override: Optional[int] = None,
+    ) -> List[Dict[str, str]]:
+        """Build the bounded working set used by every provider path."""
+        configured_window = context_window_override
+        if configured_window is None and runtime:
+            configured_window = runtime.llm_context_window_tokens
+
+        context_window = int(
+            configured_window or settings.LLM_CONTEXT_WINDOW_TOKENS
+        )
+        input_budget, output_reserve, safety_reserve = calculate_input_budget(
+            context_window,
+            max_output_tokens,
+            settings.LLM_CONTEXT_SAFETY_TOKENS,
+        )
+
+        compressor = get_compressor()
+        before = compressor.count_tokens(messages)
+        prepared = compressor.compress(messages, max_tokens=input_budget)
+        after = compressor.count_tokens(prepared)
+
+        if after["total"] < before["total"]:
+            logger.warning(
+                "LLM context compacted before dispatch: %s -> %s estimated input "
+                "tokens (window=%s, output_reserve=%s, safety_reserve=%s)",
+                before["total"],
+                after["total"],
+                context_window,
+                output_reserve,
+                safety_reserve,
+            )
+        return prepared
+
     async def generate(self, messages: List[Dict[str, str]], model: Optional[str] = None, runtime: Optional[RuntimeConfig] = None, **kwargs) -> NodeOutput:
         """
         Non-streaming generation with automatic parsing.
@@ -172,6 +211,15 @@ class LLMGateway:
         - ZhipuGateway 应该自己处理重试
         - 避免双重重试和异步返回值问题
         """
+        max_output_tokens = int(
+            kwargs.get("max_tokens") or settings.LLM_DEFAULT_MAX_OUTPUT_TOKENS
+        )
+        messages = self._prepare_context(
+            messages,
+            runtime,
+            max_output_tokens=max_output_tokens,
+        )
+
         base_url = runtime.llm_base_url if runtime else None
 
         # [FIX] 智谱检测 - 使用专用适配器
@@ -197,17 +245,6 @@ class LLMGateway:
 
         # [v1.3] 智谱检测 - 使用 OpenAI 兼容模式
         is_zhipu = self._is_zhipu(base_url)
-
-        # [OPTIMIZED v1.1] Auto-compress context if too large
-        compressor = get_compressor()
-        token_info = compressor.count_tokens(messages)
-        max_tokens = 120000  # Default max for most models
-
-        if token_info["total"] > max_tokens * 0.8:  # Compress if at 80% capacity
-            logger.info(f"Compressing context: {token_info['total']} tokens")
-            messages = compressor.compress(messages, max_tokens=max_tokens)
-            new_info = compressor.count_tokens(messages)
-            logger.info(f"Compressed to: {new_info['total']} tokens ({len(messages)} messages)")
 
         try:
             completion_kwargs = _prepare_completion_kwargs(
@@ -268,94 +305,6 @@ class LLMGateway:
                 # 其他错误也返回友好消息
                 friendly_error = f"**[LLM Error]**\n\nFailed to generate response.\n\nOriginal error: {error_msg[:300]}"
                 raise ExecutionError("LLM", friendly_error)
-        """
-        [NEW] Generate raw text without parsing.
-        Returns the raw LLM response text for batch parsing.
-        [OPTIMIZED v1.1] Automatic context compression.
-        """
-        # [v1.3] 智谱检测 - 使用专用适配器
-        base_url = runtime.llm_base_url if runtime else None
-        if self._is_zhipu(base_url):
-            zhipu = self._get_zhipu_gateway()
-            return await zhipu.generate_raw(messages, model, runtime, **kwargs)
-        
-        node_id = kwargs.pop("node_id", "Unknown")
-        
-        # [BYOK] Resolve Config
-        api_key, base_url, active_model = self._resolve_config(runtime, model)
-        
-        # [v1.3] 智谱检测 - 使用 OpenAI 兼容模式
-        is_zhipu = self._is_zhipu(base_url)
-        
-        # [OPTIMIZED v1.1] Auto-compress context if too large
-        compressor = get_compressor()
-        token_info = compressor.count_tokens(messages)
-        max_tokens = 120000  # Default max for most models
-        
-        if token_info["total"] > max_tokens * 0.8:  # Compress if at 80% capacity
-            logger.info(f"Compressing context: {token_info['total']} tokens")
-            messages = compressor.compress(messages, max_tokens=max_tokens)
-            new_info = compressor.count_tokens(messages)
-            logger.info(f"Compressed to: {new_info['total']} tokens ({len(messages)} messages)")
-        
-        try:
-            completion_kwargs = _prepare_completion_kwargs(
-                active_model,
-                kwargs,
-                temperature=kwargs.get("temperature", 1.0),
-                excluded_keys={"max_tokens", "api_key"},
-            )
-            # Use stream=True to avoid connection timeouts on long generations
-            stream = await litellm.acompletion(
-                model=active_model,
-                messages=messages,
-                stream=True,  # Stream internally to avoid idle timeout
-                api_key=api_key,
-                api_base=base_url if base_url else None,
-                custom_llm_provider="openai" if is_zhipu else None,  # [v1.3] 智谱使用 OpenAI 兼容模式
-                timeout=600,
-                **completion_kwargs,
-            )
-            
-            # Accumulate all chunks to reconstruct full content
-            raw_content = ""
-            async for chunk in stream:
-                delta = chunk.choices[0].delta
-                content_delta = delta.content or ""
-                raw_content += content_delta
-            
-            # Extract content after </think> tag for workflow processing nodes
-            # This handles LLM outputs that include thinking tags (e.g., Claude)
-            if "</think>" in raw_content:
-                think_end_index = raw_content.find("</think>")
-                if think_end_index != -1:
-                    # Extract content after </think> tag (including the tag itself)
-                    raw_content = raw_content[think_end_index + len("</think>"):].strip()
-            
-            print(f"\n[DEBUG] LLM Output for Node: {node_id}\n{raw_content}\n{'-'*50}")
-            
-            return raw_content
-
-        except Exception as e:
-            error_msg = str(e)
-            logger.error(f"LLM Generation Failed: {error_msg}")
-            
-            # [容错机制] 当 API Key 错误或缺失时，返回友好的错误信息而不是崩溃
-            if "api_key" in error_msg.lower() or "authentication" in error_msg.lower() or "401" in error_msg:
-                friendly_error = (
-                    f"**[LLM Configuration Error]**\n\n"
-                    f"The LLM API call failed. This is usually due to:\n"
-                    f"1. Missing or invalid API key in Settings\n"
-                    f"2. Incorrect model name\n"
-                    f"3. API quota exhausted\n\n"
-                    f"**Solution:** Click the gear icon (⚙️) in the top-right corner and configure your API key.\n\n"
-                    f"Original error: {error_msg[:200]}"
-                )
-                raise ExecutionError("LLM", friendly_error)
-            else:
-                # 其他错误也返回友好消息
-                friendly_error = f"**[LLM Error]**\n\nFailed to generate response.\n\nOriginal error: {error_msg[:300]}"
-                raise ExecutionError("LLM", friendly_error)
 
     async def _generate_anthropic_raw(
         self,
@@ -367,7 +316,9 @@ class LLMGateway:
         node_id: str = "Unknown",
         **kwargs
     ) -> str:
-        max_tokens = int(kwargs.get("max_tokens") or 4096)
+        max_tokens = int(
+            kwargs.get("max_tokens") or settings.LLM_DEFAULT_MAX_OUTPUT_TOKENS
+        )
         temperature = kwargs.get("temperature", 1.0)
         payload = anthropic_payload(
             messages,
@@ -410,7 +361,9 @@ class LLMGateway:
         temperature: float,
         **kwargs
     ) -> AsyncGenerator[CopilotStreamChunk, None]:
-        max_tokens = int(kwargs.get("max_tokens") or 4096)
+        max_tokens = int(
+            kwargs.get("max_tokens") or settings.LLM_DEFAULT_MAX_OUTPUT_TOKENS
+        )
         payload = anthropic_payload(
             messages,
             model,
@@ -487,6 +440,18 @@ class LLMGateway:
         Yields structured chunks (Content + Thought) for Copilot streaming.
         Compatible with OpenAI standard and DeepSeek reasoning extensions.
         """
+        max_output_tokens = int(
+            kwargs.get("max_tokens") or settings.LLM_DEFAULT_MAX_OUTPUT_TOKENS
+        )
+        messages = self._prepare_context(
+            messages,
+            runtime,
+            max_output_tokens=max_output_tokens,
+            context_window_override=(
+                model_config.contextWindowTokens if model_config else None
+            ),
+        )
+
         # [v1.3] 智谱检测 - 使用专用适配器
         base_url = model_config.baseUrl if model_config else (runtime.llm_base_url if runtime else None)
         if self._is_zhipu(base_url):

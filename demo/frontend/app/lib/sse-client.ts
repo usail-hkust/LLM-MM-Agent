@@ -17,6 +17,7 @@ function getBYOKHeaders(): Record<string, string> {
 
   if (pub?.modelName) headers["X-LLM-Model"] = pub.modelName;
   if (pub?.baseUrl) headers["X-LLM-Base-URL"] = pub.baseUrl;
+  if (pub?.contextWindowTokens) headers["X-LLM-Context-Window"] = String(pub.contextWindowTokens);
   if (sec?.apiKey) headers["X-LLM-API-Key"] = sec.apiKey;
   if (sec?.e2bKey) headers["X-E2B-API-Key"] = sec.e2bKey;
   
