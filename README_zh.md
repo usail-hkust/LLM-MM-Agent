@@ -7,25 +7,38 @@
 > 📖 当前为中文版本。 [Click here for English version](./README.md)
 
 ## 📰 新闻
-1. **2026-09**
+1. **2026-09-28**
+   🎉 **数学建模专家 v1.1.0 跨平台技能包已发布**
+
+   可在 **Codex、Claude Code 和 Cursor** 中安装使用，包含统一专家入口、通用数学建模、美赛论文写作三项技能，支持可复现计算、模型验证和可编辑 LaTeX 论文交付。
+
+   👉 [仓库与安装说明](https://github.com/luckyfan-cs/mm-agent-expert) · [v1.1.0 版本下载](https://github.com/luckyfan-cs/mm-agent-expert/releases/tag/v1.1.0)
+
+   ```bash
+   npx skills add luckyfan-cs/mm-agent-expert --skill '*' -a codex -a claude-code -a cursor -g -y
+   ```
+
+   安装需 Node.js/npm；安装后新开会话，输入“使用数学建模专家”并提供题目和数据。PDF 编译需运行环境提供 LaTeX 编译器。
+
+2. **2026-09**
    🎉 **MM-Agent 已上线 Work Buddy**
    🚀 我们的 MM-Agent 已上线 Work Buddy！在 **「专家技能」** 中找到 **「数学建模专家｜数模智研」**，即可体验。
 
    ![Work Buddy 中的 MM-Agent：数学建模专家｜数模智研](assets/workbuddy_expert.png)
 
-2. **2026-05**
+3. **2026-05**
    🎉 **开源 Demo 已发布 / Open-source Demo Released**
    🚀 可在本地一键部署升级后的数学建模平台，包含 Next.js 前端、FastAPI 后端、BYOK 配置和 E2B 沙盒支持。
    👉 使用说明 / Usage: [demo/README.md](./demo/README.md)
-3. **2025-12**
+4. **2025-12**
    🔥 **即将更新**：我们将很快发布最新升级版演示。请 **Star** 🌟 我们的仓库！由于服务器容量有限，我们将根据 Star 列表发放服务账号，帮助大家更好的备战美赛。
-4. **2025-10**
+5. **2025-10**
    🚀 **MM-Agent 辅助两支本科生团队在 MCM/ICM 2025 中获得 Finalist 奖**（27,456 支队伍中的前 2.0%），证明了其作为*建模副驾驶*的实际效果。
    🔗  [演示地址](https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent)
-5. **2025-09**
+6. **2025-09**
    🎉 我们的论文 *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* 已被 **NeurIPS 2025** 录用！
    📄 [arXiv 论文](https://arxiv.org/abs/2505.14148)
-6. **2025-07**
+7. **2025-07**
    🎉 我们的论文 *"MM-Agent: LLMs as Agents for Real-world Mathematical Modeling Problems"* 已被 **ICML 2025 AI4MATH Workshop** 录用！
    📄 [arXiv 论文](https://arxiv.org/abs/2505.14148)
 
